@@ -1,0 +1,25 @@
+{
+  "name": "phpdb-docs",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Unified documentation site for php-db packages, built with Astro Starlight",
+  "scripts": {
+    "sync": "node scripts/sync-docs.mjs",
+    "predev": "npm run sync",
+    "dev": "astro dev",
+    "prebuild": "npm run sync",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.38.5",
+    "astro": "^6.2.2",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0",
+    "tar": "^7.4.3"
+  }
+}

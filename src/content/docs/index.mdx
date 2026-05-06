@@ -1,0 +1,38 @@
+---
+title: phpdb
+description: Documentation for the phpdb family of database packages
+template: splash
+hero:
+  tagline: Database abstraction, SQL building, and adapters for modern PHP.
+  actions:
+    - text: Get started
+      link: /getting-started/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/php-db
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Packages
+
+<CardGrid stagger>
+  <Card title="phpdb" icon="seti:db">
+    Core database abstraction with SQL builder, result sets, and gateways.
+    [Read the docs →](/packages/phpdb/)
+  </Card>
+  <Card title="MySQL Adapter" icon="seti:mysql">
+    MySQL driver adapter for phpdb. [Read the docs →](/packages/phpdb-mysql/)
+  </Card>
+  <Card title="PostgreSQL Adapter" icon="seti:db">
+    PostgreSQL driver adapter for phpdb. [Read the docs →](/packages/phpdb-pgsql/)
+  </Card>
+  <Card title="SQLite Adapter" icon="seti:db">
+    SQLite driver adapter for phpdb. [Read the docs →](/packages/phpdb-sqlite/)
+  </Card>
+  <Card title="Paginator Adapter" icon="seti:db">
+    Paginator integration. [Read the docs →](/packages/phpdb-paginator-adapter/)
+  </Card>
+</CardGrid>
