@@ -72,6 +72,13 @@ Two changes:
 
 For a custom domain, set `SITE_URL` to the domain, set `SITE_BASE` to `/`, and add a `CNAME` file in `public/`.
 
+## ⚠️  Font licence (POC only)
+
+`src/styles/fonts/` contains **trial-licensed** Saans / SaansMono `.woff2` files from Displaay foundry. These are **not licensed for production deployment**. Before a public release, either:
+
+- Purchase a licence from Displaay and replace the `-TRIAL-` files with the production weights (and update the `@font-face src:` URLs in `src/styles/theme.css`), or
+- Swap to a freely-licensed alternative (e.g. Inter / JetBrains Mono) — same file pattern, just a different `font-family` in `theme.css`.
+
 ## Deferred (not yet wired up)
 
 - `repository_dispatch` from each `php-db/*` repo on release/push, so this site rebuilds automatically when an upstream package changes.

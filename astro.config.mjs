@@ -20,11 +20,18 @@ export default defineConfig({
     starlight({
       title: 'phpdb',
       description: 'Documentation for the phpdb family of database packages.',
+      logo: {
+        src: './src/assets/phpdb-logo.svg',
+        replacesTitle: true,
+      },
+      customCss: ['./src/styles/theme.css'],
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/php-db' },
       ],
       sidebar: [
         { label: 'Getting Started', slug: 'getting-started' },
+        { label: 'Features', slug: 'features' },
+        { label: 'Examples', slug: 'examples' },
         { label: 'About', slug: 'about' },
         { label: 'Contributing', slug: 'contributing' },
         { label: 'Packages', items: generatedSidebar },

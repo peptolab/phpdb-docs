@@ -1,38 +1,98 @@
 ---
 title: phpdb
-description: Documentation for the phpdb family of database packages
+description: A modern PHP Database abstraction layer, SQL abstraction, result set abstraction, and RowDataGateway and TableDataGateway implementations.
 template: splash
 hero:
-  tagline: Database abstraction, SQL building, and adapters for modern PHP.
+  tagline: A modern PHP database abstraction layer — SQL builders, result sets, table & row gateways. No ORM required.
   actions:
     - text: Get started
       link: getting-started/
       icon: right-arrow
+    - text: Browse features
+      link: features/
+      variant: minimal
     - text: View on GitHub
       link: https://github.com/php-db
       icon: external
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { LinkCard } from '@astrojs/starlight/components';
 
-## Packages
+<div class="feature-grid">
+  <div class="feature">
+    <img src={`${import.meta.env.BASE_URL}img/adapter@2x.png`} alt="" />
+    <h3>Stable Cross-Database Adapter Layer</h3>
+    <p>A unified interface for MySQL, PostgreSQL, SQLite, and SQL Server with consistent quoting and parameter handling.</p>
+    <ul>
+      <li>Support for popular SQL-based databases</li>
+      <li>Smoother deployment across environments</li>
+    </ul>
+  </div>
 
-<CardGrid stagger>
-  <Card title="phpdb" icon="seti:db">
-    Core database abstraction with SQL builder, result sets, and gateways.
-    [Read the docs →](packages/phpdb/)
-  </Card>
-  <Card title="MySQL Adapter" icon="seti:mysql">
-    MySQL driver adapter for phpdb. [Read the docs →](packages/phpdb-mysql/)
-  </Card>
-  <Card title="PostgreSQL Adapter" icon="seti:db">
-    PostgreSQL driver adapter for phpdb. [Read the docs →](packages/phpdb-pgsql/)
-  </Card>
-  <Card title="SQLite Adapter" icon="seti:db">
-    SQLite driver adapter for phpdb. [Read the docs →](packages/phpdb-sqlite/)
-  </Card>
-  <Card title="Paginator Adapter" icon="seti:db">
-    Paginator integration. [Read the docs →](packages/phpdb-paginator-adapter/)
-  </Card>
-</CardGrid>
+  <div class="feature">
+    <img src={`${import.meta.env.BASE_URL}img/sql@2x.png`} alt="" />
+    <h3>SQL Builders that Stay Close to SQL</h3>
+    <p>Structured Select, Insert, Update, Delete objects with full support for typed arguments, nesting, mutability and more.</p>
+    <ul>
+      <li>Predictable SQL generation</li>
+      <li>Fewer string operations</li>
+      <li>Easier debugging and code review</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <img src={`${import.meta.env.BASE_URL}img/table-gateway@2x.png`} alt="" />
+    <h3>TableGateway Pattern (No ORM Requirements)</h3>
+    <p>A simple, structured approach to CRUD and table-level operations without lifecycle hooks or hidden behaviour.</p>
+    <ul>
+      <li>Order and reusability without ORM overhead</li>
+      <li>No unpredictable magic or hidden behaviour</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <img src={`${import.meta.env.BASE_URL}img/parameter@2x.png`} alt="" />
+    <h3>Parameter Binding Everywhere</h3>
+    <p>Secure prepared statements and consistent handling of parameters across all SQL operations.</p>
+    <ul>
+      <li>Prevents injection vulnerabilities</li>
+      <li>Improved performance with statement caching</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <img src={`${import.meta.env.BASE_URL}img/result-set@2x.png`} alt="" />
+    <h3>Pluggable Result Sets</h3>
+    <p>Return arrays, ArrayObjects, custom models, or hydrating results — with the option to define your own ResultSet type.</p>
+    <ul>
+      <li>Shape data to fit your application</li>
+      <li>No need to adapt to framework conventions</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <img src={`${import.meta.env.BASE_URL}img/profiling@2x.png`} alt="" />
+    <h3>Built-In Query Profiling Hooks</h3>
+    <p>Lightweight instrumentation for capturing executed SQL, bind parameters, and timing information.</p>
+    <ul>
+      <li>Diagnose slow queries easily</li>
+      <li>No heavy profiling tools required</li>
+    </ul>
+  </div>
+</div>
+
+## Documentation by package
+
+<LinkCard title="phpdb (core)" href="packages/phpdb/" description="Database abstraction, SQL builders, result sets, gateways." />
+<LinkCard title="MySQL Adapter" href="packages/phpdb-mysql/" description="MySQL driver adapter for phpdb." />
+<LinkCard title="PostgreSQL Adapter" href="packages/phpdb-pgsql/" description="PostgreSQL driver adapter for phpdb." />
+<LinkCard title="SQLite Adapter" href="packages/phpdb-sqlite/" description="SQLite driver adapter for phpdb." />
+<LinkCard title="Paginator Adapter" href="packages/phpdb-paginator-adapter/" description="laminas-paginator integration." />
+
+## With thanks
+
+phpdb stands on the shoulders of many who have contributed to the PHP database ecosystem over the years. We extend our sincere thanks to the maintainers, authors, reviewers, and community members whose ideas, patterns, and hard-won lessons have informed the tools we use today.
+
+- [phpdb contributors on GitHub](https://github.com/php-db)
+- [laminas/laminas-db contributors on GitHub](https://github.com/laminas/laminas-db/graphs/contributors)
