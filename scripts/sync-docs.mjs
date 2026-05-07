@@ -232,9 +232,15 @@ function renderIndexLinks(items, prefix, depth = 0) {
 
 function ensureFrontmatter(raw, fallbackTitle) {
   if (raw.startsWith('---')) return raw;
-  const h1Match = raw.match(/^#\s+(.+?)\s*$/m);
-  const title = (h1Match ? h1Match[1] : fallbackTitle).replace(/"/g, '\\"');
-  return `---\ntitle: "${title}"\n---\n\n${raw}`;
+  const h1Match = raw.match(/^\s*#\s+(.+?)[ \t]*\n/);
+  let title = fallbackTitle;
+  let body = raw;
+  if (h1Match) {
+    title = h1Match[1];
+    body = raw.slice(h1Match[0].length).replace(/^\s*\n+/, '');
+  }
+  const safeTitle = title.replace(/"/g, '\\"');
+  return `---\ntitle: "${safeTitle}"\n---\n\n${body}`;
 }
 
 async function writeSidebar(sidebar) {
