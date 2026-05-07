@@ -204,7 +204,8 @@ async function listMarkdown(dir) {
 async function ensurePackageIndex(pkg, sidebarItems) {
   const indexPath = join(PACKAGES_OUT, pkg.name, 'index.md');
   if (await fileExists(indexPath)) return;
-  const links = renderIndexLinks(sidebarItems);
+  const prefix = `packages/${pkg.name}/`;
+  const links = renderIndexLinks(sidebarItems, prefix);
   const body =
     `---\ntitle: "${pkg.label.replace(/"/g, '\\"')}"\n---\n\n` +
     `# ${pkg.label}\n\n` +
@@ -213,13 +214,16 @@ async function ensurePackageIndex(pkg, sidebarItems) {
   sidebarItems.unshift({ label: 'Overview', slug: `packages/${pkg.name}` });
 }
 
-function renderIndexLinks(items, depth = 0) {
+function renderIndexLinks(items, prefix, depth = 0) {
   if (!Array.isArray(items)) return '';
   return items.map((item) => {
     const indent = '  '.repeat(depth);
-    if ('slug' in item) return `${indent}- [${item.label}](/${item.slug}/)`;
+    if ('slug' in item) {
+      const rel = item.slug.startsWith(prefix) ? item.slug.slice(prefix.length) : item.slug;
+      return `${indent}- [${item.label}](${rel}/)`;
+    }
     if ('items' in item) {
-      const children = renderIndexLinks(item.items, depth + 1);
+      const children = renderIndexLinks(item.items, prefix, depth + 1);
       return `${indent}- ${item.label}\n${children}`;
     }
     return '';
