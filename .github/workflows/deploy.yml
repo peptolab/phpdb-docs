@@ -14,6 +14,14 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+# Opt JavaScript-based actions onto Node 24 ahead of GitHub's June 2026
+# default flip — silences the Node 20 deprecation notices currently emitted
+# by actions/checkout@v4, actions/setup-node@v4, actions/configure-pages@v5,
+# and actions/upload-pages-artifact@v3. Drop this env once those actions
+# ship versions that bundle Node 24 natively.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   build:
     runs-on: ubuntu-latest
