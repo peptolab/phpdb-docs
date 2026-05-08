@@ -1,0 +1,110 @@
+// Section spacing placeholders
+// Uses Perfect Fourth ratio (1.333) for size variants
+
+// Base value
+$section-base: 3rem;
+
+// Size scale (Perfect Fourth - 1.333)
+$section-xs: calc($section-base / 1.777);  // ~0.96rem
+$section-sm: calc($section-base / 1.333);  // ~1.28rem
+$section-md: $section-base;                 // 1.7rem
+$section-lg: calc($section-base * 1.333);  // ~2.27rem
+$section-xl: calc($section-base * 1.777);  // ~3.02rem
+
+// Top-only variants
+%section_top_xs { margin-top: $section-xs; }
+%section_top_sm { margin-top: $section-sm; }
+%section_top { margin-top: $section-md; }
+%section_top_md { margin-top: $section-md; }
+%section_top_lg { margin-top: $section-lg; }
+%section_top_xl { margin-top: $section-xl; }
+
+// Bottom-only variants
+%section_btm_xs { margin-bottom: $section-xs; }
+%section_btm_sm { margin-bottom: $section-sm; }
+%section_btm { margin-bottom: $section-md; }
+%section_btm_md { margin-bottom: $section-md; }
+%section_btm_lg { margin-bottom: $section-lg; }
+%section_btm_xl { margin-bottom: $section-xl; }
+
+// Combined (top + bottom)
+%section_xs {
+  @extend %section_top_xs;
+  @extend %section_btm_xs;
+}
+
+%section_sm {
+  @extend %section_top_sm;
+  @extend %section_btm_sm;
+}
+
+%section {
+  @extend %section_top;
+  @extend %section_btm;
+}
+
+%section_md {
+  @extend %section_top_md;
+  @extend %section_btm_md;
+}
+
+%section_lg {
+  @extend %section_top_lg;
+  @extend %section_btm_lg;
+}
+
+%section_xl {
+  @extend %section_top_xl;
+  @extend %section_btm_xl;
+}
+
+// ===========================================
+// Padding variants
+// ===========================================
+
+// Top-only padding variants
+%section_padding_top_xs { padding-top: $section-xs; }
+%section_padding_top_sm { padding-top: $section-sm; }
+%section_padding_top { padding-top: $section-md; }
+%section_padding_top_md { padding-top: $section-md; }
+%section_padding_top_lg { padding-top: $section-lg; }
+%section_padding_top_xl { padding-top: $section-xl; }
+
+// Bottom-only padding variants
+%section_padding_btm_xs { padding-bottom: $section-xs; }
+%section_padding_btm_sm { padding-bottom: $section-sm; }
+%section_padding_btm { padding-bottom: $section-md; }
+%section_padding_btm_md { padding-bottom: $section-md; }
+%section_padding_btm_lg { padding-bottom: $section-lg; }
+%section_padding_btm_xl { padding-bottom: $section-xl; }
+
+// Combined padding (top + bottom)
+%section_padding_xs {
+  @extend %section_padding_top_xs;
+  @extend %section_padding_btm_xs;
+}
+
+%section_padding_sm {
+  @extend %section_padding_top_sm;
+  @extend %section_padding_btm_sm;
+}
+
+%section_padding {
+  @extend %section_padding_top;
+  @extend %section_padding_btm;
+}
+
+%section_padding_md {
+  @extend %section_padding_top_md;
+  @extend %section_padding_btm_md;
+}
+
+%section_padding_lg {
+  @extend %section_padding_top_lg;
+  @extend %section_padding_btm_lg;
+}
+
+%section_padding_xl {
+  @extend %section_padding_top_xl;
+  @extend %section_padding_btm_xl;
+}

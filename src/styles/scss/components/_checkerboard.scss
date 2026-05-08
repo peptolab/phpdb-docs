@@ -1,0 +1,89 @@
+@use "../settings" as s;
+@use "../tools" as t;
+@use "../includes" as i;
+
+.checkerboard {
+
+    $this          : &;
+
+    display        : flex;
+    flex-direction : column;
+    gap            : s.$space-16;
+
+    @include t.element("panel") {
+        display          : flex;
+        flex-direction   : column;
+        padding          : s.$space-8;
+        border-radius    : 0.5rem;
+        background-color : s.$surface;
+        gap              : s.$space-8;
+
+        @media (prefers-color-scheme : dark) {
+            background-color : s.$dark-surface;
+        }
+
+        // Switch to two-column at 1280px+; below that the panels collapse
+        // back to a single stack — narrower viewports squish the media/text
+        // pair too tightly to read.
+        @media (min-width: 1280px) {
+            display               : grid;
+            align-items           : start;
+            grid-template-columns : 1fr 1fr;
+            gap                   : s.$space-16;
+
+            &:nth-child(even) {
+                #{$this}__content {
+                    order : -1;
+                }
+            }
+        }
+    }
+
+    @include t.element("media") {
+        border-radius : s.$radius-lg;
+        background    : s.$white;
+        aspect-ratio  : 16 / 9;
+    }
+
+    @include t.element("content") {
+        display        : flex;
+        flex-direction : column;
+        gap            : s.$space-4;
+    }
+
+    @include t.element("title") {
+        @extend %first-last-child;
+
+        font-size      : s.$font-size-h4;
+        font-weight    : s.$font-weight-medium;
+        line-height    : s.$line-height-tight;
+        margin         : 0;
+        letter-spacing : -0.0125em;
+    }
+
+    @include t.element("lead") {
+        @extend %first-last-child;
+
+        font-size   : s.$font-size-h5;
+        font-weight : s.$font-weight-light;
+        line-height : s.$line-height-tight;
+        color       : s.$text-muted;
+
+        @include t.dark {
+            color : s.$dark-text-muted;
+        }
+    }
+
+    @include t.element("body") {
+        @extend %first-last-child;
+
+        font-size   : s.$font-size-base;
+        font-weight : 300;
+        line-height : s.$line-height-base;
+        color       : s.$text-muted;
+
+        @include t.dark {
+            color : s.$dark-text-muted;
+        }
+    }
+}

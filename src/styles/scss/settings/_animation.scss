@@ -1,0 +1,16 @@
+// Animation settings
+
+$animation-timing-sm: 0.15s;
+$animation-timing-md: 0.3s;
+$animation-timing-lg: 0.5s;
+
+$animation-easing-default: ease;
+$animation-easing-cubic: cubic-bezier(0.4, 0, 0.2, 1);
+$animation-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// Shorthand transitions
+$transition-fast: $animation-timing-sm $animation-easing-default;
+$transition-base: $animation-timing-md $animation-easing-default;
+
+$border-size-sm: 2px;
+$border-size-keyline: 1px;

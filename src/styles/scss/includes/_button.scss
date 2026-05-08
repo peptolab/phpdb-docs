@@ -1,0 +1,39 @@
+// Button placeholders
+@use '../settings' as s;
+
+%button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: s.$space-2;
+  padding: s.$space-2 s.$space-4;
+  font-size: s.$font-size-base;
+  font-weight: s.$font-weight-medium;
+  line-height: s.$line-height-tight;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: s.$radius-md;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+%button-primary {
+  @extend %button;
+  color: s.$white;
+  background-color: s.$primary;
+
+  &:hover {
+    background-color: color-mix(in srgb, s.$primary 85%, black);
+  }
+}
+
+%button-secondary {
+  @extend %button;
+  color: s.$text;
+  background-color: s.$surface;
+  border-color: s.$border;
+
+  &:hover {
+    background-color: s.$border;
+  }
+}

@@ -1,0 +1,114 @@
+---
+/**
+ * Override of Starlight's built-in Pagination.
+ *
+ * Tightens the previous/next pair: a `border-top` matching the site-links
+ * row in Footer.astro, no per-card padding or shadow, a single vertical
+ * hairline between prev and next, and small labels.
+ *
+ * When prev/next crosses a package boundary (e.g. last page of `phpdb` →
+ * first page of `phpdb-mysql`), the small "Previous"/"Next" label is
+ * replaced with the destination package's name so users have an explicit
+ * cue that they're entering a new section.
+ */
+import { Icon } from '@astrojs/starlight/components';
+
+const { dir, pagination, entry } = Astro.locals.starlightRoute;
+const { prev, next } = pagination;
+const isRtl = dir === 'rtl';
+
+const packageFromPath = (path: string | undefined): string | null => {
+    if (!path) return null;
+    const m = path.match(/(?:^|\/)packages\/([^/]+)/);
+    return m ? m[1] : null;
+};
+
+// Starlight ≥0.38 exposes the content-collection id (not slug) on the route
+// entry. Format is e.g. "packages/phpdb-pgsql" — same shape we want to match.
+const currentPkg = packageFromPath(entry.id);
+const prevPkg    = packageFromPath(prev?.href);
+const nextPkg    = packageFromPath(next?.href);
+
+const prevCrossesBoundary = !!(currentPkg && prevPkg && prevPkg !== currentPkg);
+const nextCrossesBoundary = !!(currentPkg && nextPkg && nextPkg !== currentPkg);
+---
+
+{(prev || next) && (
+    <nav class="pagination-links print:hidden" dir={dir} aria-label="Page navigation">
+        {prev && (
+            <a href={prev.href} rel="prev" class:list={{ 'crosses-boundary': prevCrossesBoundary }}>
+                <Icon name={isRtl ? 'right-arrow' : 'left-arrow'} size="1rem" />
+                <span class="link-content">
+                    <span class="link-label">
+                        {prevCrossesBoundary ? prevPkg : Astro.locals.t('page.previousLink')}
+                    </span>
+                    <span class="link-title">{prev.label}</span>
+                </span>
+            </a>
+        )}
+        {next && (
+            <a href={next.href} rel="next" class:list={{ 'crosses-boundary': nextCrossesBoundary }}>
+                <span class="link-content">
+                    <span class="link-label">
+                        {nextCrossesBoundary ? nextPkg : Astro.locals.t('page.nextLink')}
+                    </span>
+                    <span class="link-title">{next.label}</span>
+                </span>
+                <Icon name={isRtl ? 'left-arrow' : 'right-arrow'} size="1rem" />
+            </a>
+        )}
+    </nav>
+)}
+
+<style>
+    .pagination-links {
+        display: flex;
+        margin-top: 2rem;
+        border-top: 1px solid var(--sl-color-hairline);
+    }
+
+    a {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        flex: 1;
+        padding-block: 1rem;
+        padding-inline: 0;
+        text-decoration: none;
+        color: var(--sl-color-gray-3);
+        overflow-wrap: anywhere;
+    }
+
+    a:hover .link-title {
+        color: var(--sl-color-text-accent);
+    }
+
+    [rel='next'] {
+        justify-content: flex-end;
+        text-align: end;
+        border-inline-start: 1px solid var(--sl-color-hairline);
+    }
+
+    .link-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+    }
+
+    .link-label {
+        font-size: var(--sl-text-xs);
+        color: var(--sl-color-gray-3);
+    }
+
+    .link-title {
+        font-size: var(--sl-text-base);
+        line-height: var(--sl-line-height-headings);
+        font-weight: 600;
+        color: var(--sl-color-white);
+    }
+
+    svg {
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+</style>

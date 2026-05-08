@@ -1,0 +1,56 @@
+// Typography placeholders
+@use '../settings' as s;
+
+%type-h1 {
+  font-size: s.$font-size-h1;
+  font-weight: s.$font-weight-bold;
+  line-height: s.$line-height-tight;
+}
+
+%type-h2 {
+  font-size: s.$font-size-h2;
+  font-weight: s.$font-weight-bold;
+  line-height: s.$line-height-tight;
+}
+
+%type-h3 {
+  font-size: s.$font-size-h3;
+  font-weight: s.$font-weight-bold;
+  line-height: s.$line-height-tight;
+}
+
+%type-h4 {
+  font-size: s.$font-size-h4;
+  font-weight: s.$font-weight-bold;
+  line-height: s.$line-height-tight;
+}
+
+%type-h5 {
+  font-size: s.$font-size-h5;
+  font-weight: s.$font-weight-bold;
+  line-height: s.$line-height-tight;
+}
+
+%type-h6 {
+  font-size: s.$font-size-h6;
+  font-weight: s.$font-weight-bold;
+  line-height: s.$line-height-tight;
+}
+
+%type-body {
+  font-size: s.$font-size-base;
+  font-weight: s.$font-weight-normal;
+  line-height: s.$line-height-base;
+}
+
+%type-small {
+  font-size: s.$font-size-small;
+  line-height: s.$line-height-base;
+}
+
+%type-navbar {
+  font-size: s.$font-size-sm;
+  font-weight: s.$font-weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

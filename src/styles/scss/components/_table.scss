@@ -1,0 +1,71 @@
+@use "sass:color";
+@use "../settings" as s;
+@use "../tools" as t;
+@use "../includes" as i;
+
+/**
+ * Table component for marketing/splash pages (benchmarks, env detail).
+ *
+ * Mirrors the phpdb-www `.docs__table` look without pulling in the full
+ * documentation chrome.
+ */
+.docs {
+
+    $this : &;
+
+    @include t.element("table-wrapper") {
+        @extend %section_xs;
+        overflow-x : auto;
+    }
+
+    @include t.element("table") {
+        font-size       : s.$font-size-sm;
+        width           : 100%;
+        border-collapse : collapse;
+    }
+
+    @include t.element("thead") {
+        background-color : s.$surface;
+
+        @include t.dark {
+            background-color : s.$dark-surface;
+        }
+    }
+
+    @include t.element("th") {
+        font-weight : s.$font-weight-bold;
+        padding     : s.$space-3 s.$space-4;
+        text-align  : left;
+        border      : 1px solid s.$border;
+
+        @include t.dark {
+            color        : s.$dark-text;
+            border-color : s.$dark-border;
+        }
+    }
+
+    @include t.element("td") {
+        padding    : s.$space-3 s.$space-4;
+        text-align : left;
+        border     : 1px solid s.$border;
+
+        @include t.dark {
+            border-color : s.$dark-border;
+        }
+
+        @include t.modifier("best") {
+            font-weight : s.$font-weight-bold;
+            color       : s.$success;
+        }
+    }
+
+    @include t.element("tr") {
+        &:hover {
+            background-color : s.$surface;
+
+            @include t.dark {
+                background-color : s.$dark-surface;
+            }
+        }
+    }
+}

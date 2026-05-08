@@ -1,0 +1,33 @@
+// Reset placeholders
+
+%reset-margin {
+  margin: 0;
+  padding: 0;
+}
+
+%reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+%reset-button {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+%first-last-child {
+  &:first-child { margin-top: 0; }
+  &:last-child { margin-bottom: 0; }
+}
+
+%first-last-type {
+  &:first-of-type { margin-top: 0; }
+  &:last-of-type { margin-bottom: 0; }
+}

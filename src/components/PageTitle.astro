@@ -1,0 +1,29 @@
+---
+/**
+ * Override of Starlight's built-in PageTitle.
+ *
+ * Renders the page's H1 from frontmatter — except for marketing pages
+ * (`rawHtml: true`), which provide their own `.header__title` block.
+ * Returning nothing on those pages replaces the previous CSS-based
+ * `display: none` hack in theme.scss.
+ */
+const PAGE_TITLE_ID = '_top';
+const { entry } = Astro.locals.starlightRoute;
+const rawHtml = entry.data.rawHtml === true;
+---
+
+{
+    !rawHtml && (
+        <h1 id={PAGE_TITLE_ID}>{entry.data.title}</h1>
+    )
+}
+
+<style>
+    h1 {
+        margin-top: 1rem;
+        font-size: var(--sl-text-h1);
+        line-height: var(--sl-line-height-headings);
+        font-weight: 600;
+        color: var(--sl-color-white);
+    }
+</style>

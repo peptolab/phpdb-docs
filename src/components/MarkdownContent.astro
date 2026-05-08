@@ -1,0 +1,20 @@
+---
+/**
+ * Override of Starlight's built-in MarkdownContent.
+ *
+ * For pages that opt in via `rawHtml: true` in frontmatter, render the slot
+ * verbatim — without Starlight's `.sl-markdown-content` wrapper and without
+ * pulling in `markdown.css`. This lets BEM-styled marketing pages emit their
+ * own markup unencumbered by the documentation typography.
+ *
+ * All other pages defer to the default component, preserving Starlight's
+ * full markdown styling.
+ */
+import Default from '@astrojs/starlight/components/MarkdownContent.astro';
+
+const { entry } = Astro.locals.starlightRoute;
+const raw = entry.data.rawHtml === true;
+---
+
+<!-- phpdb-override:loaded raw={raw ? 'true' : 'false'} keys={Object.keys(entry.data).join(',')} -->
+{raw ? <slot /> : <Default><slot /></Default>}

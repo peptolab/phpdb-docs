@@ -2,97 +2,218 @@
 title: phpdb
 description: A modern PHP Database abstraction layer, SQL abstraction, result set abstraction, and RowDataGateway and TableDataGateway implementations.
 template: splash
-hero:
-  tagline: A modern PHP database abstraction layer — SQL builders, result sets, table & row gateways. No ORM required.
-  actions:
-    - text: Get started
-      link: getting-started/
-      icon: right-arrow
-    - text: Browse features
-      link: features/
-      variant: minimal
-    - text: View on GitHub
-      link: https://github.com/php-db
-      icon: external
-      variant: minimal
+rawHtml: true
 ---
 
-import { LinkCard } from '@astrojs/starlight/components';
+<div class="phpdb-page">
 
-<div class="feature-grid">
-  <div class="feature">
-    <img src={`${import.meta.env.BASE_URL}img/adapter@2x.png`} alt="" />
-    <h3>Stable Cross-Database Adapter Layer</h3>
-    <p>A unified interface for MySQL, PostgreSQL, SQLite, and SQL Server with consistent quoting and parameter handling.</p>
-    <ul>
-      <li>Support for popular SQL-based databases</li>
-      <li>Smoother deployment across environments</li>
-    </ul>
-  </div>
+<header class="header">
+    <div class="header__container">
+        <div class="header__layout">
+            <h1 class="header__title">PhpDb</h1>
+        </div>
+    </div>
+</header>
 
-  <div class="feature">
-    <img src={`${import.meta.env.BASE_URL}img/sql@2x.png`} alt="" />
-    <h3>SQL Builders that Stay Close to SQL</h3>
-    <p>Structured Select, Insert, Update, Delete objects with full support for typed arguments, nesting, mutability and more.</p>
-    <ul>
-      <li>Predictable SQL generation</li>
-      <li>Fewer string operations</li>
-      <li>Easier debugging and code review</li>
-    </ul>
-  </div>
+<section class="section">
+    <div class="section__container">
+        <div class="section__layout">
+            <p class="type type--lead">A modern PHP Database abstraction layer, SQL abstraction, result set abstraction, and RowDataGateway and TableDataGateway implementations.</p>
+            <p class="type type--lead">Built for PHP 8.2+, Laminas and Mezzio.</p>
+        </div>
+    </div>
+</section>
 
-  <div class="feature">
-    <img src={`${import.meta.env.BASE_URL}img/table-gateway@2x.png`} alt="" />
-    <h3>TableGateway Pattern (No ORM Requirements)</h3>
-    <p>A simple, structured approach to CRUD and table-level operations without lifecycle hooks or hidden behaviour.</p>
-    <ul>
-      <li>Order and reusability without ORM overhead</li>
-      <li>No unpredictable magic or hidden behaviour</li>
-    </ul>
-  </div>
+<section class="section">
+    <div class="section__container">
+        <div class="section__layout">
+            <div class="grid grid--3-col">
 
-  <div class="feature">
-    <img src={`${import.meta.env.BASE_URL}img/parameter@2x.png`} alt="" />
-    <h3>Parameter Binding Everywhere</h3>
-    <p>Secure prepared statements and consistent handling of parameters across all SQL operations.</p>
-    <ul>
-      <li>Prevents injection vulnerabilities</li>
-      <li>Improved performance with statement caching</li>
-    </ul>
-  </div>
-
-  <div class="feature">
-    <img src={`${import.meta.env.BASE_URL}img/result-set@2x.png`} alt="" />
-    <h3>Pluggable Result Sets</h3>
-    <p>Return arrays, ArrayObjects, custom models, or hydrating results — with the option to define your own ResultSet type.</p>
-    <ul>
-      <li>Shape data to fit your application</li>
-      <li>No need to adapt to framework conventions</li>
-    </ul>
-  </div>
-
-  <div class="feature">
-    <img src={`${import.meta.env.BASE_URL}img/profiling@2x.png`} alt="" />
-    <h3>Built-In Query Profiling Hooks</h3>
-    <p>Lightweight instrumentation for capturing executed SQL, bind parameters, and timing information.</p>
-    <ul>
-      <li>Diagnose slow queries easily</li>
-      <li>No heavy profiling tools required</li>
-    </ul>
-  </div>
+<div class="card">
+    <figure class="card__image">
+        <img src={`${import.meta.env.BASE_URL}img/adapter@2x.png`} alt="" />
+    </figure>
+    <div class="card__header">
+        <h2 class="card__title">Stable Cross-Database Adapter Layer</h2>
+    </div>
+    <div class="card__body">
+        <p>A unified interface for MySQL, PostgreSQL, SQLite, and SQL Server with consistent quoting and parameter handling.</p>
+        <ul class="list list--checklist">
+            <li class="list__item">Support for popular SQL-based databases</li>
+            <li class="list__item">Smoother deployment across environments</li>
+        </ul>
+    </div>
 </div>
 
-## Documentation by package
+<div class="card">
+    <figure class="card__image">
+        <img src={`${import.meta.env.BASE_URL}img/sql@2x.png`} alt="" />
+    </figure>
+    <div class="card__header">
+        <h2 class="card__title">SQL Builders that Stay Close to SQL</h2>
+    </div>
+    <div class="card__body">
+        <p>Structured Select, Insert, Update, Delete objects with full support for typed arguments, nesting, mutability and more.</p>
+        <ul class="list list--checklist">
+            <li class="list__item">Predictable SQL generation</li>
+            <li class="list__item">Fewer string operations</li>
+            <li class="list__item">Easier debugging and code review</li>
+        </ul>
+    </div>
+</div>
 
-<LinkCard title="phpdb (core)" href="packages/phpdb/" description="Database abstraction, SQL builders, result sets, gateways." />
-<LinkCard title="MySQL Adapter" href="packages/phpdb-mysql/" description="MySQL driver adapter for phpdb." />
-<LinkCard title="PostgreSQL Adapter" href="packages/phpdb-pgsql/" description="PostgreSQL driver adapter for phpdb." />
-<LinkCard title="SQLite Adapter" href="packages/phpdb-sqlite/" description="SQLite driver adapter for phpdb." />
-<LinkCard title="Paginator Adapter" href="packages/phpdb-paginator-adapter/" description="laminas-paginator integration." />
+<div class="card">
+    <figure class="card__image">
+        <img src={`${import.meta.env.BASE_URL}img/table-gateway@2x.png`} alt="" />
+    </figure>
+    <div class="card__header">
+        <h2 class="card__title">TableGateway Pattern (No ORM Requirements)</h2>
+    </div>
+    <div class="card__body">
+        <p>A simple, structured approach to CRUD and table-level operations without lifecycle hooks or hidden behaviour.</p>
+        <ul class="list list--checklist">
+            <li class="list__item">Order and reusability without ORM overhead</li>
+            <li class="list__item">No unpredictable magic or hidden behaviour</li>
+        </ul>
+    </div>
+</div>
 
-## With thanks
+<div class="card">
+    <figure class="card__image">
+        <img src={`${import.meta.env.BASE_URL}img/parameter@2x.png`} alt="" />
+    </figure>
+    <div class="card__header">
+        <h2 class="card__title">Parameter Binding Everywhere</h2>
+    </div>
+    <div class="card__body">
+        <p>Secure prepared statements and consistent handling of parameters across all SQL operations.</p>
+        <ul class="list list--checklist">
+            <li class="list__item">Prevents injection vulnerabilities</li>
+            <li class="list__item">Improved performance with statement caching</li>
+        </ul>
+    </div>
+</div>
 
-phpdb stands on the shoulders of many who have contributed to the PHP database ecosystem over the years. We extend our sincere thanks to the maintainers, authors, reviewers, and community members whose ideas, patterns, and hard-won lessons have informed the tools we use today.
+<div class="card">
+    <figure class="card__image">
+        <img src={`${import.meta.env.BASE_URL}img/result-set@2x.png`} alt="" />
+    </figure>
+    <div class="card__header">
+        <h2 class="card__title">Pluggable Result Sets</h2>
+    </div>
+    <div class="card__body">
+        <p>Return arrays, ArrayObjects, custom models, or hydrating results—with the option to define your own ResultSet type.</p>
+        <ul class="list list--checklist">
+            <li class="list__item">Shape data to fit your application</li>
+            <li class="list__item">No need to adapt to framework conventions</li>
+        </ul>
+    </div>
+</div>
 
-- [phpdb contributors on GitHub](https://github.com/php-db)
-- [laminas/laminas-db contributors on GitHub](https://github.com/laminas/laminas-db/graphs/contributors)
+<div class="card">
+    <figure class="card__image">
+        <img src={`${import.meta.env.BASE_URL}img/profiling@2x.png`} alt="" />
+    </figure>
+    <div class="card__header">
+        <h2 class="card__title">Built-In Query Profiling Hooks</h2>
+    </div>
+    <div class="card__body">
+        <p>Lightweight instrumentation for capturing executed SQL, bind parameters, and timing information.</p>
+        <ul class="list list--checklist">
+            <li class="list__item">Diagnose slow queries easily</li>
+            <li class="list__item">No heavy profiling tools required</li>
+        </ul>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--divider">
+    <div class="section__container">
+        <div class="section__layout">
+            <div class="grid grid--2-col">
+                <div class="grid__col">
+                    <h2 class="type__heading type__heading--sm">Documentation by package</h2>
+                    <ul class="list list--links">
+                        <li class="list__item"><a href="packages/phpdb/">PhpDb</a><br/>Database abstraction, SQL builders, result sets, gateways</li>
+                        <li class="list__item"><a href="packages/phpdb-mysql/">MySQL Adapter</a></li>
+                        <li class="list__item"><a href="packages/phpdb-pgsql/">PostgreSQL Adapter</a></li>
+                        <li class="list__item"><a href="packages/phpdb-sqlite/">SQLite Adapter</a></li>
+                        <li class="list__item"><a href="packages/phpdb-paginator-adapter/">Paginator Adapter</a></li>
+                    </ul>
+                </div>
+                <div class="grid__col">
+                    <h2 class="type__heading type__heading--sm">Get started</h2>
+                    <p class="type">Install via Composer, configure an adapter, and run your first query.</p>
+                    <ul class="list list--links">
+                        <li class="list__item"><a href="getting-started/">Getting Started</a></li>
+                        <li class="list__item"><a href="features/">Features</a></li>
+                        <li class="list__item"><a href="examples/">Examples</a></li>
+                        <li class="list__item"><a href="https://github.com/php-db" target="_blank" rel="noopener noreferrer">View on GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--divider">
+    <div class="section__container">
+        <div class="section__layout">
+            <div class="grid grid--2-col">
+                <div class="grid__col">
+                    <h2 class="type__heading type__heading--sm">With thanks</h2>
+                    <p class="type">PhpDb stands on the shoulders of many who have contributed to the PHP database ecosystem over the years. We extend our sincere thanks to the maintainers, authors, reviewers, and community members whose ideas, patterns, and hard-won lessons have informed the tools we use today.</p>
+                    <ul class="list list--links">
+                        <li class="list__item"><a href="https://github.com/php-db" target="_blank" rel="noopener noreferrer">PhpDb contributors on GitHub</a></li>
+                        <li class="list__item"><a href="https://github.com/laminas/laminas-db/graphs/contributors" target="_blank" rel="noopener noreferrer">laminas/laminas-db contributors on GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="grid__col">
+                    <h2 class="type__heading type__heading--sm">Colophon</h2>
+                    <p class="type">A note on the typefaces, tools, and infrastructure behind this site.</p>
+                    <h3 class="type__subheading type__subheading--sm">Typefaces</h3>
+                    <div class="grid grid--3-col">
+                        <div class="grid__col">
+                            <ul class="list list--links">
+                                <li class="list__item"><a href="https://displaay.net/typeface/saans/" target="_blank" rel="noopener noreferrer">Saans</a><br/>Body, by Displaay</li>
+                                <li class="list__item"><a href="https://displaay.net/typeface/saans-mono/" target="_blank" rel="noopener noreferrer">SaansMono</a><br/>Code, by Displaay</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="type__subheading type__subheading--sm">Built with</h3>
+                    <div class="grid grid--3-col">
+                        <div class="grid__col">
+                            <ul class="list list--links">
+                                <li class="list__item"><a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a><br/>Site framework</li>
+                                <li class="list__item"><a href="https://starlight.astro.build" target="_blank" rel="noopener noreferrer">Starlight</a><br/>Documentation theme</li>
+                            </ul>
+                        </div>
+                        <div class="grid__col">
+                            <ul class="list list--links">
+                                <li class="list__item"><a href="https://sass-lang.com" target="_blank" rel="noopener noreferrer">Sass</a><br/>Stylesheet language</li>
+                                <li class="list__item"><a href="https://pagefind.app" target="_blank" rel="noopener noreferrer">Pagefind</a><br/>Static search</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="type__subheading type__subheading--sm">Hosted on</h3>
+                    <div class="grid grid--3-col">
+                        <div class="grid__col">
+                            <ul class="list list--links">
+                                <li class="list__item"><a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a></li>
+                                <li class="list__item"><a href="https://github.com/php-db/phpdb-docs" target="_blank" rel="noopener noreferrer">Source on GitHub</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>

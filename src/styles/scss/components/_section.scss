@@ -1,0 +1,23 @@
+@use "../settings" as s;
+@use "../tools" as t;
+@use "../includes" as i;
+
+.section {
+
+    $this : &;
+
+    @extend %section;
+    @extend %first-last-type;
+
+    @include t.element("container") {
+        @extend %container;
+    }
+
+    @include t.modifier("divider") {
+
+        & #{$this}__layout {
+            @extend %section_padding;
+            border-top : 1px solid #cccccc;
+        }
+    }
+}

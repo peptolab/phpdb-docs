@@ -1,0 +1,389 @@
+@use "sass:color";
+@use "scss/settings" as s;
+@use "scss/tools" as t;
+@use "scss/includes";
+@use "scss/components";
+@use "scss/utilities";
+
+/**
+ * phpdb docs theme.
+ *
+ * Strategy:
+ *  - Map phpdb-www design tokens onto Starlight's `--sl-*` CSS variables so
+ *    documentation pages inherit Saans typography, navy sidebar, and the
+ *    surface/background palette.
+ *  - Emit phpdb-www BEM components (.section, .grid, .card, .checkerboard,
+ *    .header, .type, .list--checklist) for the splash marketing pages.
+ *  - Scope a thin `.phpdb-page` wrapper that resets Starlight's splash content
+ *    spacing so BEM sections control their own vertical rhythm.
+ */
+
+@font-face {
+    font-display : swap;
+    font-family  : "Saans";
+    font-style   : normal;
+    font-weight  : 300;
+    src          : url("./fonts/saans/Saans-TRIAL-Light.woff2") format("woff2");
+}
+
+@font-face {
+    font-display : swap;
+    font-family  : "Saans";
+    font-style   : normal;
+    font-weight  : 400;
+    src          : url("./fonts/saans/Saans-TRIAL-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-display : swap;
+    font-family  : "Saans";
+    font-style   : normal;
+    font-weight  : 500;
+    src          : url("./fonts/saans/Saans-TRIAL-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-display : swap;
+    font-family  : "Saans";
+    font-style   : normal;
+    font-weight  : 600;
+    src          : url("./fonts/saans/Saans-TRIAL-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+    font-display : swap;
+    font-family  : "Saans";
+    font-style   : normal;
+    font-weight  : 700;
+    src          : url("./fonts/saans/Saans-TRIAL-Bold.woff2") format("woff2");
+}
+
+@font-face {
+    font-display : swap;
+    font-family  : "SaansMono";
+    font-style   : normal;
+    font-weight  : 400;
+    src          : url("./fonts/saans-mono/SaansMono-TRIAL-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-display : swap;
+    font-family  : "SaansMono";
+    font-style   : normal;
+    font-weight  : 700;
+    src          : url("./fonts/saans-mono/SaansMono-TRIAL-Bold.woff2") format("woff2");
+}
+
+:root {
+    --sl-font      : "Saans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --sl-font-mono : "SaansMono", ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
+}
+
+:root[data-theme="light"] {
+    --sl-color-accent-low  : #{color.mix(s.$primary, s.$white, 12%)};
+    --sl-color-accent      : #{s.$primary};
+    --sl-color-accent-high : #{color.mix(s.$primary, s.$black, 35%)};
+
+    /**
+     * Starlight names its scale by dark-mode role: `--sl-color-white` is the
+     * highest-contrast text colour (used for headings, etc.) and
+     * `--sl-color-black` is the lowest-contrast bg. In light mode the scale
+     * must invert — otherwise headings render white-on-white.
+     */
+    --sl-color-white       : #{s.$text};
+    --sl-color-gray-1      : #334155;
+    --sl-color-gray-2      : #{s.$text-muted};
+    --sl-color-gray-3      : #94a3b8;
+    --sl-color-gray-4      : #cbd5e1;
+    --sl-color-gray-5      : #{s.$border};
+    --sl-color-gray-6      : #f1f5f9;
+    --sl-color-gray-7      : #{s.$white};
+    --sl-color-black       : #{s.$white};
+
+    --sl-color-bg          : #{s.$white};
+    --sl-color-bg-nav      : #{s.$white};
+    --sl-color-bg-sidebar  : #{s.$white};
+    --sl-color-text-accent : #{s.$primary};
+    --sl-color-hairline    : #{s.$border};
+}
+
+:root[data-theme="dark"] {
+    --sl-color-accent-low  : #1e3a8a;
+    --sl-color-accent      : #60a5fa;
+    --sl-color-accent-high : #93c5fd;
+
+    --sl-color-bg          : #{s.$dark-background};
+    --sl-color-bg-nav      : #1b2335;
+    --sl-color-bg-sidebar  : #1b2335;
+}
+
+.site-title img {
+    max-height : 2.25rem;
+}
+
+/**
+ * Focus indicators.
+ *
+ * WCAG 2.4.7 only requires a focus indicator to be visible *when focused* —
+ * it does not require it for pointer-induced focus. `:focus-visible` is the
+ * UA's heuristic for "the user actually navigated here with the keyboard"
+ * (or another a11y pathway), so we suppress the ring for mouse focus and
+ * present a clear, AA-compliant ring on keyboard focus.
+ */
+:focus:not(:focus-visible) {
+    outline    : none;
+    box-shadow : none;
+}
+
+:focus-visible {
+    outline        : 2px solid var(--sl-color-accent);
+    outline-offset : 2px;
+    border-radius  : 2px;
+}
+
+site-search button[data-open-modal] {
+    color                : #{s.$text-muted};
+    border-color         : #{s.$border};
+    background-color     : #{s.$surface};
+    /* Push to the right edge of the search column (button is capped at
+       22rem at ≥50rem; auto inline-start margin keeps it flush right). */
+    margin-inline-start  : auto;
+
+    &:hover {
+        background-color : #{color.mix(s.$primary, s.$white, 7%)};
+    }
+
+    @include t.dark {
+        color            : #{s.$dark-text-muted};
+        border-color     : #{s.$dark-border};
+        background-color : #{s.$dark-surface};
+    }
+}
+
+site-search button[data-open-modal] kbd {
+    color            : inherit;
+    background-color : transparent;
+}
+
+/**
+ * Sidebar surface — navy radial gradient, lifted from phpdb-www's
+ * `.layout__sidebar`. The sidebar's interior styling (section headings,
+ * links, active-link pill) lives in `src/components/SidebarSublist.astro`.
+ */
+.sidebar-pane,
+sl-sidebar-state-persist {
+    color            : rgba(255, 255, 255, 0.5);
+    background-image : radial-gradient(circle farthest-corner at 50% 10%, #{s.$primary} 11.6%, #{color.mix(s.$black, s.$primary, 35%)} 90.5%);
+}
+
+/**
+ * Dark mode is toggled by Starlight via `<html data-theme="dark">`, not by
+ * the OS-level `prefers-color-scheme` media query — so we cannot use the
+ * `t.dark` mixin here. Target the data attribute directly.
+ */
+:root[data-theme="dark"] .sidebar-pane,
+:root[data-theme="dark"] sl-sidebar-state-persist {
+    background-image : radial-gradient(circle farthest-corner at 50% 10%, #{color.mix(s.$black, s.$primary, 65%)} 11.6%, #{color.mix(s.$black, s.$primary, 82%)} 90.5%);
+}
+
+/**
+ * Table of contents (right rail on doc pages).
+ *
+ * Mirrors phpdb-www's `.docs__toc` presentation: muted item text by default,
+ * bold accent for the current item, brighter text on hover. The "On this
+ * page" heading is downgraded to a small uppercase label.
+ */
+starlight-toc h2 {
+    font-size      : #{s.$font-size-xs};
+    font-weight    : #{s.$font-weight-medium};
+    letter-spacing : 0.05em;
+    text-transform : uppercase;
+    color          : var(--sl-color-gray-3);
+}
+
+/* TOC links carry an inline padding (0.5rem) for the hover/active hit-area.
+   Pull the parent ul outwards by the same amount so the link text aligns
+   with the "On this page" heading flush left/right. */
+starlight-toc nav > ul {
+    margin-inline : -0.5rem;
+}
+
+starlight-toc a {
+    transition      : color #{s.$transition-fast};
+    text-decoration : none;
+    color           : var(--sl-color-gray-3);
+
+    &:hover {
+        color : var(--sl-color-white);
+    }
+}
+
+starlight-toc a[aria-current="true"] {
+    font-weight : #{s.$font-weight-bold};
+    color       : var(--sl-color-text-accent);
+}
+
+/**
+ * Marketing pages (.phpdb-page wrapper).
+ *
+ * Layout model:
+ *  - `.sl-container` is unconstrained when it wraps a `.phpdb-page` so each
+ *    `.section` / `.header` band fills the full content area.
+ *  - Each band gets a light surface background so individual sections can
+ *    later opt into alternate palettes (dark, accent) by overriding bg.
+ *  - Inner content is constrained to 90rem (1440px) via `.section__container`
+ *    / `.header__container`, with the same horizontal gutters as the BEM
+ *    container scale (2rem mobile, 4rem ≥1024px).
+ *
+ * Suppress Starlight's auto-rendered H1 panel — our `.header` block already
+ * provides the page title.
+ */
+main:has(.phpdb-page) .content-panel:first-child {
+    display : none;
+}
+
+/**
+ * Sidebar breakpoint shim: Starlight switches from the mobile drawer to the
+ * persistent sidebar at 50rem (800px). We want that switch at 56.25rem
+ * (900px), so re-assert the mobile-state rules in the 800–899px range.
+ *
+ * Starlight has no `--sl-mobile-breakpoint` variable, so this is the only
+ * way to do it without forking PageFrame and util.css. Maintenance cost:
+ * if Starlight introduces new sidebar-related `min-width: 50rem` rules in
+ * a future release, extend this block accordingly.
+ */
+@media (min-width: 50rem) and (max-width: 56.24rem) {
+    /* Sidebar collapses back into a fixed mobile drawer */
+    .sidebar-pane {
+        --sl-sidebar-visibility : hidden;
+        width                   : 100%;
+        background-color        : var(--sl-color-black);
+        border-inline-end       : 0;
+    }
+
+    [aria-expanded="true"] ~ .sidebar-pane {
+        --sl-sidebar-visibility : visible;
+    }
+
+    /* Main content fills the full width — no sidebar gutter */
+    .main-frame {
+        padding-inline-start : 0;
+    }
+
+    /* Header keeps room for the mobile menu toggle on the inline-end side */
+    [data-has-sidebar] .header {
+        padding-inline-end : calc(var(--sl-nav-gap) + var(--sl-nav-pad-x) + var(--sl-menu-button-size));
+    }
+
+    /* Restore the mobile / desktop visibility utilities */
+    .md\:sl-hidden {
+        display : revert;
+    }
+
+    .md\:sl-flex,
+    .md\:sl-block {
+        display : none;
+    }
+}
+
+.sl-container:has(.phpdb-page) {
+    max-width : none;
+    padding   : 0;
+}
+
+/**
+ * Footer gutters: only apply when `.sl-container` has been stripped of its
+ * own padding (i.e. on `.phpdb-page` marketing pages). On regular doc pages
+ * `.sl-container` already provides the horizontal gutter — adding more on
+ * the footer would double it.
+ */
+.sl-container:has(.phpdb-page) > footer,
+.sl-container:has(.phpdb-page) footer {
+    padding-inline : 2rem;
+}
+
+@media (min-width: 1024px) {
+    .sl-container:has(.phpdb-page) > footer,
+    .sl-container:has(.phpdb-page) footer {
+        padding-inline : 4rem;
+    }
+}
+
+.phpdb-page .section,
+.phpdb-page .header {
+    background-color : #{s.$background};
+    /**
+     * `.section` (and the BEM `%section` placeholder) ships with vertical
+     * MARGIN for breathing room. Margin between bg-bearing siblings shows
+     * the parent's bg in the gap — visible as a stripe in dark mode. Convert
+     * to vertical PADDING so each band's bg fills its own rhythm and
+     * adjacent sections butt up cleanly.
+     */
+    margin-block  : 0;
+    /* Half the original 3rem because padding doesn't collapse like margin —
+       adjacent sections sum to 3rem total, matching the original visual gap. */
+    padding-block : 1.5rem;
+}
+
+.phpdb-page .section__container,
+.phpdb-page .header__container {
+    max-width : 90rem;
+}
+
+.phpdb-page {
+    padding    : 0;
+    background : s.$background;
+}
+
+/**
+ * Dark-mode variants. `t.dark` resolves to `prefers-color-scheme: dark`
+ * which doesn't fire when the user manually toggles via Starlight's theme
+ * picker — target `[data-theme="dark"]` directly so it always applies.
+ */
+:root[data-theme="dark"] .phpdb-page {
+    background : #{s.$dark-background};
+}
+
+:root[data-theme="dark"] .phpdb-page .section,
+:root[data-theme="dark"] .phpdb-page .header {
+    background-color : #{s.$dark-surface};
+    color            : #{s.$dark-text};
+}
+
+:root[data-theme="dark"] .phpdb-page .type--lead,
+:root[data-theme="dark"] .phpdb-page .type__heading,
+:root[data-theme="dark"] .phpdb-page .header__title,
+:root[data-theme="dark"] .phpdb-page .checkerboard__title {
+    color : #{s.$dark-text};
+}
+
+:root[data-theme="dark"] .phpdb-page .checkerboard__lead,
+:root[data-theme="dark"] .phpdb-page .checkerboard__body,
+:root[data-theme="dark"] .phpdb-page .type {
+    color : #{s.$dark-text-muted};
+}
+
+/**
+ * Card and checkerboard panel surfaces. The BEM source uses
+ * `@media (prefers-color-scheme: dark)` for these, which fires off OS
+ * preference and not Starlight's manual toggle. Re-assert via the
+ * `[data-theme="dark"]` selector so they switch with the picker.
+ *
+ * Section bg sits at `$dark-surface` (≈5% white over $dark-background).
+ * Card bg lifts ≈5% above that so cards stand out from the section
+ * surface — mirroring the light-mode contrast where `.section` is light
+ * grey and `.card` is near-white.
+ */
+:root[data-theme="dark"] .phpdb-page .card,
+:root[data-theme="dark"] .phpdb-page .checkerboard__panel {
+    background-color : #{color.mix(s.$white, s.$dark-background, 10%)};
+    color            : #{s.$dark-text};
+}
+
+:root[data-theme="dark"] .phpdb-page .card__title {
+    color : #{s.$dark-text};
+}
+
+:root[data-theme="dark"] .phpdb-page .card .list--checklist {
+    color : #{s.$dark-text-muted};
+}

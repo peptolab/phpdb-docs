@@ -1,0 +1,100 @@
+@use "sass:map";
+@use "sass:string";
+@use "sass:list";
+
+$breakpoints: (
+    "mobile"      : 480px,
+    "tablet"      : 768px,
+    "desktop"     : 1350px,
+    "big-desktop" : 1920px,
+);
+
+@function _get-breakpoint-keys() {
+    @return map.keys($breakpoints);
+}
+
+@function _get-next-breakpoint($name) {
+    $keys  : map.keys($breakpoints);
+    $index : list.index($keys, $name);
+
+    @if $index and $index < length($keys) {
+        @return nth($keys, $index + 1);
+    }
+
+    @return null;
+}
+
+@mixin breakpoint($query) {
+    $first-char  : string.slice($query, 1, 1);
+    $second-char : string.slice($query, 2, 2);
+    $operator    : null;
+    $name        : null;
+
+    @if $first-char == "<" {
+        @if $second-char == "=" {
+            $operator : "<=";
+            $name     : string.slice($query, 3);
+        } @else {
+            $operator : "<";
+            $name     : string.slice($query, 2);
+        }
+    } @else if $first-char == ">" {
+        @if $second-char == "=" {
+            $operator : ">=";
+            $name     : string.slice($query, 3);
+        } @else {
+            $operator : ">";
+            $name     : string.slice($query, 2);
+        }
+    } @else {
+        $operator : "only";
+        $name     : $query;
+    }
+
+    @if not map.has-key($breakpoints, $name) {
+        @error "Unknown breakpoint: #{$name}. Available: #{map.keys($breakpoints)}";
+    }
+
+    $value : map.get($breakpoints, $name);
+    $keys  : map.keys($breakpoints);
+    $index : list.index($keys, $name);
+
+    @if $operator == "<" {
+        @media (max-width : calc(#{$value} - 1px)) {
+            @content;
+        }
+    } @else if $operator == "<=" {
+        @if $index < length($keys) {
+            $next-value : map.get($breakpoints, nth($keys, $index + 1));
+            @media (max-width : calc(#{$next-value} - 1px)) {
+                @content;
+            }
+        } @else {
+            @content;
+        }
+    } @else if $operator == ">=" {
+        @media (min-width : #{$value}) {
+            @content;
+        }
+    } @else if $operator == ">" {
+        @if $index < length($keys) {
+            $next-value : map.get($breakpoints, nth($keys, $index + 1));
+            @media (min-width : #{$next-value}) {
+                @content;
+            }
+        } @else {
+            @error "No breakpoint above #{$name}";
+        }
+    } @else if $operator == "only" {
+        @if $index < length($keys) {
+            $next-value : map.get($breakpoints, nth($keys, $index + 1));
+            @media (min-width : #{$value}) and (max-width : calc(#{$next-value} - 1px)) {
+                @content;
+            }
+        } @else {
+            @media (min-width : #{$value}) {
+                @content;
+            }
+        }
+    }
+}

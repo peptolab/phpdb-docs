@@ -1,0 +1,41 @@
+---
+/**
+ * Override of Starlight's built-in SiteTitle.
+ *
+ * Inlines the logo SVG (instead of loading it via `<img>`) so its paths
+ * inherit `currentColor` from the parent link. Colour is controlled via
+ * `.site-title { color: ... }` below.
+ */
+import logoSvg from '../assets/phpdb-logo-horizontal.svg?raw';
+
+const { siteTitle, siteTitleHref } = Astro.locals.starlightRoute;
+---
+
+<a href={siteTitleHref} class="site-title sl-flex">
+    <span class="logo" aria-hidden="true" set:html={logoSvg} />
+    <span class="sr-only" translate="no">{siteTitle}</span>
+</a>
+
+<style>
+    .site-title {
+        align-items: center;
+        gap: var(--sl-nav-gap);
+        text-decoration: none;
+        white-space: nowrap;
+        min-width: 0;
+        color: var(--sl-color-white);
+    }
+
+    .site-title:hover {
+        color: var(--sl-color-text-accent);
+    }
+
+    .logo {
+        display: inline-flex;
+    }
+
+    .logo :global(svg) {
+        height: calc(var(--sl-nav-height) - 2 * var(--sl-nav-pad-y));
+        width: auto;
+    }
+</style>

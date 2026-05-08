@@ -208,7 +208,6 @@ async function ensurePackageIndex(pkg, sidebarItems) {
   const links = renderIndexLinks(sidebarItems, prefix);
   const body =
     `---\ntitle: "${pkg.label.replace(/"/g, '\\"')}"\n---\n\n` +
-    `# ${pkg.label}\n\n` +
     (links ? `## Pages\n\n${links}\n` : `> No pages available.\n`);
   await writeFile(indexPath, body, 'utf8');
   sidebarItems.unshift({ label: 'Overview', slug: `packages/${pkg.name}` });

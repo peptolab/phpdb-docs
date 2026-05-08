@@ -1,0 +1,109 @@
+---
+/**
+ * Override of Starlight's built-in Footer.
+ *
+ * Preserves the upstream meta row (edit link / last updated) and pagination,
+ * and appends a small site-wide link row for Credits, Licence, and
+ * Contributing — pages that exist as routes but should not appear in the
+ * primary sidebar.
+ */
+import EditLink from 'virtual:starlight/components/EditLink';
+import LastUpdated from 'virtual:starlight/components/LastUpdated';
+import Pagination from 'virtual:starlight/components/Pagination';
+import config from 'virtual:starlight/user-config';
+import { Icon } from '@astrojs/starlight/components';
+
+const base = import.meta.env.BASE_URL;
+const links = [
+    { label: 'Credits', href: `${base}credits/` },
+    { label: 'Licence', href: `${base}licence/` },
+    { label: 'Contributing', href: `${base}contributing/` },
+];
+---
+
+<footer class="sl-flex">
+    <div class="meta sl-flex">
+        <EditLink />
+        <LastUpdated />
+    </div>
+    <Pagination />
+
+    <nav class="site-links" aria-label="Site information">
+        <ul>
+            {links.map((link) => (
+                <li><a href={link.href}>{link.label}</a></li>
+            ))}
+        </ul>
+    </nav>
+
+    {
+        config.credits && (
+            <a class="kudos sl-flex" href="https://starlight.astro.build">
+                <Icon name={'starlight'} /> {Astro.locals.t('builtWithStarlight.label')}
+            </a>
+        )
+    }
+</footer>
+
+<style>
+    @layer starlight.core {
+        footer {
+            flex-direction: column;
+            width: 100%;
+            max-width: 90rem;
+            margin-inline: auto;
+        }
+        .meta {
+            gap: 0.75rem 3rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            font-size: var(--sl-text-sm);
+            color: var(--sl-color-gray-3);
+        }
+        /* Suppress the row entirely when neither EditLink nor LastUpdated renders. */
+        .meta:not(:has(*)) {
+            display: none;
+        }
+        .meta > :global(p:only-child) {
+            margin-inline-start: auto;
+        }
+
+        .site-links ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin: 0;
+            padding: 1rem 0 0;
+            list-style: none;
+            border-top: 1px solid var(--sl-color-hairline);
+            font-size: var(--sl-text-xs);
+        }
+        .site-links a {
+            color: var(--sl-color-gray-3);
+            text-decoration: none;
+        }
+        .site-links a:hover {
+            color: var(--sl-color-white);
+            text-decoration: underline;
+        }
+
+        .kudos {
+            align-items: center;
+            gap: 0.5em;
+            margin: 1.5rem auto;
+            font-size: var(--sl-text-xs);
+            text-decoration: none;
+            color: var(--sl-color-gray-3);
+        }
+        .kudos:hover {
+            color: var(--sl-color-white);
+        }
+    }
+
+    @layer starlight.components {
+        .kudos :global(svg) {
+            color: var(--sl-color-orange);
+        }
+    }
+</style>

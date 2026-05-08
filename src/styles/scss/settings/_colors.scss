@@ -1,0 +1,53 @@
+@use 'sass:color';
+// Color tokens
+
+$primary: #0000ff;
+$secondary: #64748b;
+
+$text: #1e293b;
+$text-muted: #64748b;
+
+$white: #ffffff;
+$black: #000000;
+
+$background: color.mix($secondary, $white, 7.5%);
+$surface: color.mix($primary, $white, 1.25%);
+
+$border: #e2e8f0;
+
+$success: #16a34a;
+$warning: #ca8a04;
+$error: #dc2626;
+
+// Code block palette (dark monochrome)
+$code-bg: #0a0a0f;
+$code-text: #c5c8cb;
+$code-border: color.mix($primary, $white, 25%);
+$code-inline-bg: color.mix($primary, $white, 5%);
+$code-inline-text: color.mix($primary, $black, 50%);
+
+// Dark mode palette
+$dark-background: #0f172a;
+$dark-surface: color.mix($white, $dark-background, 5%);
+$dark-text: #f1f5f9;
+$dark-text-muted: #94a3b8;
+$dark-border: #334155;
+$dark-code-inline-bg: #1e293b;
+$dark-code-inline-text: #93c5fd;
+$dark-warning-bg: color.mix($warning, $dark-background, 15%);
+
+// Theme map for data-theme variants
+$color-themes: (
+  'light': (
+    'bg': $white,
+    'text': $text
+  ),
+  'dark': (
+    'bg': $text,
+    'text': $white
+  ),
+  'primary': (
+    'bg': $primary,
+    'text': $white
+  )
+);

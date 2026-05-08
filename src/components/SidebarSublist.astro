@@ -1,0 +1,196 @@
+---
+/**
+ * Override of Starlight's built-in SidebarSublist.
+ *
+ * Bakes the phpdb sidebar palette into the component's scoped styles: the
+ * outer `.sidebar-pane` carries the navy radial-gradient (set in
+ * theme.scss); this component controls the section headings (`.large`),
+ * link text, summary chevrons, and the active-link pill.
+ *
+ * `flattenSidebar` is inlined because Starlight does not publicly export
+ * its navigation utilities. `SidebarRestorePoint` is imported via the
+ * package's `./components/*` exports map.
+ */
+import { Icon, Badge } from '@astrojs/starlight/components';
+import SidebarRestorePoint from '@astrojs/starlight/components/SidebarRestorePoint.astro';
+
+interface SidebarLink {
+    type: 'link';
+    href: string;
+    isCurrent: boolean;
+    label: string;
+    attrs: Record<string, string | number | boolean | undefined>;
+    badge?: { variant: string; class?: string; text: string };
+}
+
+interface SidebarGroup {
+    type: 'group';
+    label: string;
+    entries: SidebarEntry[];
+    collapsed?: boolean;
+    badge?: { variant: string; class?: string; text: string };
+}
+
+type SidebarEntry = SidebarLink | SidebarGroup;
+
+function flattenSidebar(sidebar: SidebarEntry[]): SidebarLink[] {
+    return sidebar.flatMap((entry) =>
+        entry.type === 'group' ? flattenSidebar(entry.entries) : entry,
+    );
+}
+
+interface Props {
+    sublist: SidebarEntry[];
+    nested?: boolean;
+}
+
+const { sublist, nested } = Astro.props;
+---
+
+<ul class:list={{ 'top-level': !nested }}>
+    {
+        sublist.map((entry) => (
+            <li>
+                {entry.type === 'link' ? (
+                    <a
+                        href={entry.href}
+                        aria-current={entry.isCurrent ? 'page' : undefined}
+                        class:list={[{ large: !nested }, entry.attrs.class]}
+                        {...entry.attrs}
+                    >
+                        <span>{entry.label}</span>
+                        {entry.badge && (
+                            <Badge
+                                variant={entry.badge.variant as never}
+                                class={entry.badge.class}
+                                text={entry.badge.text}
+                            />
+                        )}
+                    </a>
+                ) : (
+                    <details
+                        open={flattenSidebar(entry.entries).some((i) => i.isCurrent) || !entry.collapsed}
+                    >
+                        <summary>
+                            <span class="group-label">
+                                <span class="large">{entry.label}</span>
+                                {entry.badge && (
+                                    <Badge
+                                        variant={entry.badge.variant as never}
+                                        class={entry.badge.class}
+                                        text={entry.badge.text}
+                                    />
+                                )}
+                            </span>
+                            <Icon name="right-caret" class="caret" size="1.25rem" />
+                        </summary>
+                        <SidebarRestorePoint />
+                        <Astro.self sublist={entry.entries} nested />
+                    </details>
+                )}
+            </li>
+        ))
+    }
+</ul>
+
+<style>
+    ul {
+        --sl-sidebar-item-padding-inline: 0.5rem;
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        overflow-wrap: anywhere;
+    }
+
+    ul ul li {
+        margin-inline-start: var(--sl-sidebar-item-padding-inline);
+        border-inline-start: 1px solid rgba(255, 255, 255, 0.18);
+        padding-inline-start: var(--sl-sidebar-item-padding-inline);
+    }
+
+    .large {
+        font-size: var(--sl-text-lg);
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .top-level > li + li {
+        margin-top: 0.75rem;
+    }
+
+    summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.2em var(--sl-sidebar-item-padding-inline);
+        line-height: 1.4;
+        cursor: pointer;
+        user-select: none;
+        color: rgba(255, 255, 255, 0.5);
+    }
+    summary::marker,
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    /* Open section heading promotes to full-opacity white, matching the
+       active link treatment so the user always knows which group they're
+       inside. The nested `.large` span needs its own bump because the rule
+       above it sets a 0.5 baseline. */
+    details[open] > summary,
+    details[open] > summary .large {
+        color: rgba(255, 255, 255, 1);
+    }
+
+    .caret {
+        transition: transform 0.2s ease-in-out;
+        flex-shrink: 0;
+    }
+    :global([dir='rtl']) .caret {
+        transform: rotateZ(180deg);
+    }
+    [open] > summary .caret {
+        transform: rotateZ(90deg);
+    }
+
+    a {
+        display: block;
+        border-radius: 0.25rem;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.5);
+        padding: 0.3em var(--sl-sidebar-item-padding-inline);
+        line-height: 1.4;
+        transition: color 0.15s ease;
+    }
+
+    a:hover,
+    a:focus {
+        color: rgba(255, 255, 255, 1);
+    }
+
+    [aria-current='page'],
+    [aria-current='page']:hover,
+    [aria-current='page']:focus {
+        font-weight: 600;
+        color: rgba(255, 255, 255, 1);
+    }
+
+    a > *:not(:last-child),
+    .group-label > *:not(:last-child) {
+        margin-inline-end: 0.25em;
+    }
+
+    @media (min-width: 50rem) {
+        .top-level > li + li {
+            margin-top: 0.5rem;
+        }
+        .large {
+            font-size: var(--sl-text-base);
+        }
+        a {
+            font-size: var(--sl-text-sm);
+        }
+    }
+</style>

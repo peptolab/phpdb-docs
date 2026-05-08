@@ -1,0 +1,107 @@
+@use "../settings" as s;
+@use "../tools" as t;
+@use "../includes" as i;
+
+.type {
+
+    font-size   : s.$font-size-base;
+    line-height : s.$line-height-base;
+
+    @include t.modifier("xs") {
+        font-size : s.$font-size-xs;
+    }
+
+    @include t.modifier("sm") {
+        font-size : s.$font-size-sm;
+    }
+
+    @include t.modifier("lead") {
+        font-size      : s.$font-size-h5;
+        font-weight    : s.$font-weight-light;
+        line-height    : s.$line-height-tight;
+        letter-spacing : -0.0125em;
+    }
+
+    @include t.modifier("lg") {
+        font-size : s.$font-size-lg;
+    }
+
+    @include t.modifier("xl") {
+        font-size   : s.$font-size-xl;
+        line-height : s.$line-height-tight;
+    }
+
+    @include t.modifier("2xl") {
+        font-size   : s.$font-size-2xl;
+        line-height : s.$line-height-tight;
+    }
+
+    @include t.modifier("muted") {
+        color : s.$text-muted;
+    }
+
+    @include t.modifier("bold") {
+        font-weight : s.$font-weight-bold;
+    }
+
+    @include t.modifier("medium") {
+        font-weight : s.$font-weight-medium;
+    }
+
+    @include t.element("heading") {
+        @extend %first-last-child;
+        font-weight    : s.$font-weight-medium;
+        line-height    : s.$line-height-tight;
+        margin         : 1em 0 0.375em;
+        letter-spacing : -0.0125em;
+
+        @include t.modifier("xs") {
+            font-size : s.$font-size-h6;
+        }
+
+        @include t.modifier("sm") {
+            font-size : s.$font-size-h5;
+        }
+
+        @include t.modifier("md") {
+            font-size : s.$font-size-h4;
+        }
+
+        @include t.modifier("lg") {
+            font-size : s.$font-size-h3;
+        }
+
+        @include t.modifier("xl") {
+            font-size : s.$font-size-h2;
+        }
+    }
+
+    @include t.element("subheading") {
+        font-weight    : s.$font-weight-medium;
+        line-height    : s.$line-height-base;
+        margin         : 2em 0 0.25em;
+        letter-spacing : 0.025em;
+        text-transform : uppercase;
+        color          : s.$text-muted;
+
+        @include t.modifier("xs") {
+            font-size : s.$font-size-xs;
+        }
+
+        @include t.modifier("sm") {
+            font-size : s.$font-size-sm;
+        }
+
+        @include t.modifier("md") {
+            font-size : s.$font-size-base;
+        }
+
+        @include t.modifier("lg") {
+            font-size : s.$font-size-lg;
+        }
+
+        @include t.modifier("xl") {
+            font-size : s.$font-size-xl;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+// Container mixin
+@use '../settings' as s;
+
+@mixin container {
+  width: 100%;
+  max-width: 80rem; // 1280px
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: s.$container-padding-sm;
+  padding-right: s.$container-padding-sm;
+
+  @media (min-width: 1024px) {
+    padding-left: s.$container-padding-lg;
+    padding-right: s.$container-padding-lg;
+  }
+}

@@ -1,0 +1,16 @@
+// Container placeholder
+@use '../settings' as s;
+
+%container {
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: s.$container-padding-sm;
+  padding-right: s.$container-padding-sm;
+
+  @media (min-width: 1024px) {
+    padding-left: s.$container-padding-lg;
+    padding-right: s.$container-padding-lg;
+  }
+}

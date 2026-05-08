@@ -1,0 +1,23 @@
+/// Dark mode mixin.
+/// Usage: @include t.dark { color: white; }
+///
+/// Emits two parallel rules so styles fire under both:
+///  - OS-level `prefers-color-scheme: dark` (when no theme is forced)
+///  - Starlight's manual toggle, which sets `[data-theme="dark"]` on `:root`
+@mixin dark {
+    @media (prefers-color-scheme: dark) {
+        @content;
+    }
+
+    :root[data-theme="dark"] & {
+        @content;
+    }
+}
+
+/// Light mode mixin (for explicit light-only styles)
+/// Usage: @include t.light { color: black; }
+@mixin light {
+    @media (prefers-color-scheme: light) {
+        @content;
+    }
+}

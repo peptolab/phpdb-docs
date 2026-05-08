@@ -1,0 +1,76 @@
+@use "../settings" as s;
+@use "../tools" as t;
+@use "../includes" as i;
+
+.list {
+
+    $this        : &;
+
+    @extend %first-last-child;
+
+    line-height  : 1.25;
+    margin       : 0.5em 0 1em 0;
+    padding-left : 0;
+    list-style   : none;
+
+    @include t.element("item") {
+        margin-bottom : 0.625em;
+    }
+
+    @include t.modifier("checklist") {
+        @extend %container;
+
+        font-size : s.$font-size-sm;
+        color     : s.$text-muted;
+
+        @include t.dark {
+            color : s.$dark-text-muted;
+        }
+
+        > #{$this}__item {
+            padding-left        : 1.5em;
+            background-image    : t.checklist-icon(s.$text-muted);
+            background-repeat   : no-repeat;
+            background-position : left 0.2em;
+            background-size     : 1em 1em;
+
+            @include t.dark {
+                background-image : t.checklist-icon(s.$dark-text-muted);
+            }
+        }
+    }
+
+    @include t.modifier("links") {
+        font-size : s.$font-size-sm;
+
+        > #{$this}__item {
+            padding-left        : 1.5em;
+            background-image    : t.link-icon(s.$primary);
+            background-repeat   : no-repeat;
+            background-position : left 0;
+            background-size     : 1em 1em;
+
+            @include t.dark {
+                background-image : t.link-icon(s.$dark-text);
+            }
+        }
+
+        a {
+            transition      : color s.$transition-fast;
+            text-decoration : none;
+            color           : s.$primary;
+
+            &:hover {
+                text-decoration : underline;
+            }
+
+            @include t.dark {
+                color : s.$dark-text;
+
+                &:hover {
+                    color : s.$white;
+                }
+            }
+        }
+    }
+}

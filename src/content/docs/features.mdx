@@ -1,100 +1,151 @@
 ---
 title: Features
 description: A tour of phpdb's capabilities — adapters, query builders, gateways, parameter binding, profiling, and more.
+rawHtml: true
+tableOfContents: false
+pagefind: true
+prev: false
+next: false
 ---
 
-## Cross-Database Adapter Layer
+<div class="phpdb-page">
 
-A unified interface for MySQL, PostgreSQL, SQLite, and SQL Server with consistent quoting and parameter handling.
+<header class="header">
+    <div class="header__container">
+        <div class="header__layout">
+            <h1 class="header__title">Features</h1>
+        </div>
+    </div>
+</header>
 
-phpdb provides a clean abstraction over PDO that handles the subtle differences between database platforms. Whether you're working with MySQL's backtick quoting, PostgreSQL's double quotes, or SQL Server's square brackets, the adapter layer handles it transparently.
+<section class="section">
+    <div class="section__container">
+        <div class="section__layout">
+            <div class="checkerboard">
 
-Connection management is straightforward with support for lazy connections, connection pooling awareness, and automatic reconnection. The adapter exposes the underlying PDO instance when you need direct access, while providing convenience methods for common operations.
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">Cross-Database Adapter Layer</h2>
+                        <p class="checkerboard__lead">A unified interface for MySQL, PostgreSQL, SQLite, and SQL Server with consistent quoting and parameter handling.</p>
+                        <p class="checkerboard__body">phpdb provides a clean abstraction over PDO that handles the subtle differences between database platforms. Whether you're working with MySQL's backtick quoting, PostgreSQL's double quotes, or SQL Server's square brackets, the adapter layer handles it transparently.</p>
+                        <p class="checkerboard__body">Connection management is straightforward with support for lazy connections, connection pooling awareness, and automatic reconnection. The adapter exposes the underlying PDO instance when you need direct access, while providing convenience methods for common operations.</p>
+                    </div>
+                </div>
 
-## SQL Query Builders
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">SQL Query Builders</h2>
+                        <p class="checkerboard__lead">Structured Select, Insert, Update, Delete objects with full support for typed arguments, nesting, and mutability.</p>
+                        <p class="checkerboard__body">Build complex queries programmatically without string concatenation. The query builders support joins, subqueries, unions, common table expressions, and window functions. Each builder is mutable by default, allowing you to progressively construct queries based on runtime conditions.</p>
+                        <p class="checkerboard__body">Expressions and predicates are first-class objects. Create reusable WHERE clause fragments, combine them with AND/OR logic, and nest them arbitrarily deep. The builders automatically handle identifier quoting and parameter placeholder generation.</p>
+                    </div>
+                </div>
 
-Structured Select, Insert, Update, Delete objects with full support for typed arguments, nesting, and mutability.
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">TableGateway Pattern</h2>
+                        <p class="checkerboard__lead">A simple, structured approach to CRUD and table-level operations without lifecycle hooks or hidden behaviour.</p>
+                        <p class="checkerboard__body">TableGateway wraps a single database table with methods for select, insert, update, and delete operations. It provides a natural place to encapsulate table-specific logic while keeping your code organised and testable.</p>
+                        <p class="checkerboard__body">Unlike heavy ORM solutions, TableGateway doesn't impose conventions or generate queries behind your back. You maintain full control over the SQL while benefiting from a consistent interface. Extend the base class to add domain-specific finder methods for your application.</p>
+                    </div>
+                </div>
 
-Build complex queries programmatically without string concatenation. The query builders support joins, subqueries, unions, common table expressions, and window functions. Each builder is mutable by default, allowing you to progressively construct queries based on runtime conditions.
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">RowGateway Pattern</h2>
+                        <p class="checkerboard__lead">Work with individual database rows as objects with automatic change tracking and persistence.</p>
+                        <p class="checkerboard__body">RowGateway represents a single row from a database table as an object. Access columns as properties, modify them, and call <code>save()</code> to persist changes. The gateway tracks which columns have changed and generates efficient UPDATE statements.</p>
+                        <p class="checkerboard__body">New rows can be created, populated, and inserted with the same interface. RowGateway handles primary key management automatically, including support for auto-increment columns and returning the last inserted ID.</p>
+                    </div>
+                </div>
 
-Expressions and predicates are first-class objects. Create reusable WHERE clause fragments, combine them with AND/OR logic, and nest them arbitrarily deep. The builders automatically handle identifier quoting and parameter placeholder generation.
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">Parameter Binding</h2>
+                        <p class="checkerboard__lead">Secure prepared statements and consistent handling of parameters across all SQL operations.</p>
+                        <p class="checkerboard__body">All user-supplied values are bound as parameters, never interpolated into SQL strings. This eliminates SQL injection vulnerabilities by design. The library handles type detection and appropriate PDO parameter types automatically.</p>
+                        <p class="checkerboard__body">Named and positional parameters are both supported. When building queries programmatically, parameters are collected and ordered correctly regardless of how the query was constructed. You can also pass raw expressions when you need literal SQL values.</p>
+                    </div>
+                </div>
 
-## TableGateway Pattern
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">Pluggable Result Sets</h2>
+                        <p class="checkerboard__lead">Return arrays, ArrayObjects, custom models, or hydrating results with your own ResultSet type.</p>
+                        <p class="checkerboard__body">Control how query results are returned. The default ResultSet returns associative arrays, but you can configure it to return ArrayObject instances, hydrate custom entity classes, or implement your own result handling logic.</p>
+                        <p class="checkerboard__body">ResultSets are iterable and countable, supporting <code>foreach</code> loops and <code>count()</code> calls. They can buffer results in memory or stream them directly from the database connection for memory-efficient processing of large datasets.</p>
+                    </div>
+                </div>
 
-A simple, structured approach to CRUD and table-level operations without lifecycle hooks or hidden behaviour.
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">Query Profiling</h2>
+                        <p class="checkerboard__lead">Lightweight instrumentation for capturing executed SQL, bind parameters, and timing information.</p>
+                        <p class="checkerboard__body">Attach a profiler to capture every query executed through the adapter. Each profile includes the SQL string, bound parameters, execution time, and stack trace. This is invaluable for debugging and performance optimisation.</p>
+                        <p class="checkerboard__body">The profiler is designed for minimal overhead. Enable it during development or selectively in production to diagnose issues. Export profiles to various formats or integrate with your application's logging infrastructure.</p>
+                    </div>
+                </div>
 
-TableGateway wraps a single database table with methods for select, insert, update, and delete operations. It provides a natural place to encapsulate table-specific logic while keeping your code organized and testable.
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">Metadata Inspection</h2>
+                        <p class="checkerboard__lead">Retrieve table structures, column definitions, constraints, and indexes programmatically.</p>
+                        <p class="checkerboard__body">Query your database schema at runtime. List tables, examine column types and constraints, discover primary and foreign keys, and inspect indexes. This enables dynamic application behaviour based on database structure.</p>
+                        <p class="checkerboard__body">Metadata is accessed through a consistent interface regardless of the underlying database platform. Results are cached by default to avoid repeated schema queries, with manual cache invalidation when needed.</p>
+                    </div>
+                </div>
 
-Unlike heavy ORM solutions, TableGateway doesn't impose conventions or generate queries behind your back. You maintain full control over the SQL while benefiting from a consistent interface. Extend the base class to add domain-specific finder methods for your application.
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">DDL Abstraction</h2>
+                        <p class="checkerboard__lead">Create, alter, and drop tables with platform-independent schema definitions.</p>
+                        <p class="checkerboard__body">Define table schemas using PHP objects and generate the appropriate <code>CREATE TABLE</code> statements for your target database. Column types, defaults, nullability, and constraints are expressed in a portable format.</p>
+                        <p class="checkerboard__body">The DDL builders support <code>ALTER TABLE</code> operations for adding, modifying, and dropping columns. Index creation and foreign key definitions are also supported with automatic syntax adaptation for each database platform.</p>
+                    </div>
+                </div>
 
-## RowGateway Pattern
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">Transaction Support</h2>
+                        <p class="checkerboard__lead">Full transaction management with begin, commit, rollback, and savepoint support.</p>
+                        <p class="checkerboard__body">Wrap database operations in transactions with explicit begin, commit, and rollback calls. Nested transactions are handled using savepoints on databases that support them, providing consistent behaviour across platforms.</p>
+                        <p class="checkerboard__body">A transaction callback helper simplifies the common pattern of executing code within a transaction and automatically rolling back on exceptions. This ensures your database remains consistent even when errors occur.</p>
+                    </div>
+                </div>
 
-Work with individual database rows as objects with automatic change tracking and persistence.
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">Laminas Integration</h2>
+                        <p class="checkerboard__lead">Seamless integration with Laminas MVC applications via ConfigProvider and factories.</p>
+                        <p class="checkerboard__body">Drop-in compatibility with Laminas MVC applications. Register the <code>ConfigProvider</code> to automatically wire up adapter factories, configure connection parameters through your application config, and inject adapters into your services.</p>
+                        <p class="checkerboard__body">The integration follows Laminas conventions for configuration and dependency injection. Multiple named connections are supported, and the factories handle lazy instantiation to avoid connecting until the adapter is actually used.</p>
+                    </div>
+                </div>
 
-RowGateway represents a single row from a database table as an object. Access columns as properties, modify them, and call `save()` to persist changes. The gateway tracks which columns have changed and generates efficient UPDATE statements.
+                <div class="checkerboard__panel">
+                    <div class="checkerboard__media"></div>
+                    <div class="checkerboard__content">
+                        <h2 class="checkerboard__title">Mezzio Integration</h2>
+                        <p class="checkerboard__lead">First-class support for Mezzio middleware applications with PSR-11 container compatibility.</p>
+                        <p class="checkerboard__body">phpdb works naturally with Mezzio and any PSR-11 compatible dependency injection container. The same <code>ConfigProvider</code> that works with Laminas MVC integrates directly with Mezzio's configuration system.</p>
+                        <p class="checkerboard__body">Use the adapter in your request handlers, middleware, or any service retrieved from the container. The lightweight design means minimal overhead per request, and lazy connections ensure you only connect when database access is actually needed.</p>
+                    </div>
+                </div>
 
-New rows can be created, populated, and inserted with the same interface. RowGateway handles primary key management automatically, including support for auto-increment columns and returning the last inserted ID.
+            </div>
+        </div>
+    </div>
+</section>
 
-## Parameter Binding
-
-Secure prepared statements and consistent handling of parameters across all SQL operations.
-
-All user-supplied values are bound as parameters, never interpolated into SQL strings. This eliminates SQL injection vulnerabilities by design. The library handles type detection and appropriate PDO parameter types automatically.
-
-Named and positional parameters are both supported. When building queries programmatically, parameters are collected and ordered correctly regardless of how the query was constructed. You can also pass raw expressions when you need literal SQL values.
-
-## Pluggable Result Sets
-
-Return arrays, ArrayObjects, custom models, or hydrating results with your own ResultSet type.
-
-Control how query results are returned. The default ResultSet returns associative arrays, but you can configure it to return ArrayObject instances, hydrate custom entity classes, or implement your own result handling logic.
-
-ResultSets are iterable and countable, supporting `foreach` loops and `count()` calls. They can buffer results in memory or stream them directly from the database connection for memory-efficient processing of large datasets.
-
-## Query Profiling
-
-Lightweight instrumentation for capturing executed SQL, bind parameters, and timing information.
-
-Attach a profiler to capture every query executed through the adapter. Each profile includes the SQL string, bound parameters, execution time, and stack trace. This is invaluable for debugging and performance optimization.
-
-The profiler is designed for minimal overhead. Enable it during development or selectively in production to diagnose issues. Export profiles to various formats or integrate with your application's logging infrastructure.
-
-## Metadata Inspection
-
-Retrieve table structures, column definitions, constraints, and indexes programmatically.
-
-Query your database schema at runtime. List tables, examine column types and constraints, discover primary and foreign keys, and inspect indexes. This enables dynamic application behaviour based on database structure.
-
-Metadata is accessed through a consistent interface regardless of the underlying database platform. Results are cached by default to avoid repeated schema queries, with manual cache invalidation when needed.
-
-## DDL Abstraction
-
-Create, alter, and drop tables with platform-independent schema definitions.
-
-Define table schemas using PHP objects and generate the appropriate `CREATE TABLE` statements for your target database. Column types, defaults, nullability, and constraints are expressed in a portable format.
-
-The DDL builders support `ALTER TABLE` operations for adding, modifying, and dropping columns. Index creation and foreign key definitions are also supported with automatic syntax adaptation for each database platform.
-
-## Transaction Support
-
-Full transaction management with begin, commit, rollback, and savepoint support.
-
-Wrap database operations in transactions with explicit begin, commit, and rollback calls. Nested transactions are handled using savepoints on databases that support them, providing consistent behaviour across platforms.
-
-A transaction callback helper simplifies the common pattern of executing code within a transaction and automatically rolling back on exceptions. This ensures your database remains consistent even when errors occur.
-
-## Laminas Integration
-
-Seamless integration with Laminas MVC applications via ConfigProvider and factories.
-
-Drop-in compatibility with Laminas MVC applications. Register the `ConfigProvider` to automatically wire up adapter factories, configure connection parameters through your application config, and inject adapters into your services.
-
-The integration follows Laminas conventions for configuration and dependency injection. Multiple named connections are supported, and the factories handle lazy instantiation to avoid connecting until the adapter is actually used.
-
-## Mezzio Integration
-
-First-class support for Mezzio middleware applications with PSR-11 container compatibility.
-
-phpdb works naturally with Mezzio and any PSR-11 compatible dependency injection container. The same `ConfigProvider` that works with Laminas MVC integrates directly with Mezzio's configuration system.
-
-Use the adapter in your request handlers, middleware, or any service retrieved from the container. The lightweight design means minimal overhead per request, and lazy connections ensure you only connect when database access is actually needed.
+</div>

@@ -1,0 +1,46 @@
+@use "../settings" as s;
+@use "../tools" as t;
+
+.card {
+    overflow         : hidden;
+    padding          : s.$space-4;
+    border-radius    : 1rem;
+    background-color : s.$surface;
+
+    @media (prefers-color-scheme : dark) {
+        background-color : s.$dark-surface;
+    }
+
+    @include t.element("header") {
+        padding : 0;
+    }
+
+    @include t.element("body") {
+        padding : 0;
+    }
+
+    @include t.element("footer") {
+        padding : 0;
+    }
+
+    @include t.element("title") {
+        font-size     : s.$font-size-h6;
+        font-weight   : s.$font-weight-bold;
+        line-height   : s.$line-height-tight;
+        min-height    : 2.3em;
+        margin        : 1.25em 0 0.375em;
+        padding-right : 25%;
+    }
+
+    @include t.modifier("elevated") {
+        border     : none;
+        box-shadow : 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    @include t.element('image') {
+        & img {
+            display: block;
+            max-width : 100%;
+        }
+    }
+}

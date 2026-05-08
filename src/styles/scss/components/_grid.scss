@@ -1,0 +1,45 @@
+@use "../settings" as s;
+@use "../tools" as t;
+
+.grid {
+    display    : grid;
+    column-gap : s.$space-8;
+    row-gap    : s.$space-16;
+
+    @include t.modifier("cards") {
+        grid-template-columns : repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    }
+
+    @include t.modifier("2-col") {
+        @include t.breakpoint(">=tablet") {
+            grid-template-columns : repeat(2, 1fr);
+        }
+    }
+
+    // Same as `2-col` but only switches to two columns at very wide
+    // viewports — for content (e.g. wide benchmark tables) that needs
+    // the full content width below 1440px to remain legible.
+    @include t.modifier("2-col-wide") {
+        @media (min-width: 1440px) {
+            grid-template-columns : repeat(2, 1fr);
+        }
+    }
+
+    @include t.modifier("3-col") {
+        @include t.breakpoint(">=tablet") {
+            grid-template-columns : repeat(2, 1fr);
+        }
+
+        @include t.breakpoint(">=desktop") {
+            grid-template-columns : repeat(3, 1fr);
+        }
+    }
+
+    @include t.modifier("gap-sm") {
+        gap : s.$space-4;
+    }
+
+    @include t.modifier("gap-lg") {
+        gap : s.$space-8;
+    }
+}

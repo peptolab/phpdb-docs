@@ -1,0 +1,26 @@
+// BEM helper mixins
+
+@mixin element($name) {
+  @at-root #{&}__#{$name} {
+    @content;
+  }
+}
+
+@mixin modifier($name) {
+  @at-root #{&}--#{$name} {
+    @content;
+  }
+}
+
+// Shorthand aliases
+@mixin e($name) {
+  @include element($name) {
+    @content;
+  }
+}
+
+@mixin m($name) {
+  @include modifier($name) {
+    @content;
+  }
+}

@@ -21,19 +21,32 @@ export default defineConfig({
       title: 'phpdb',
       description: 'Documentation for the phpdb family of database packages.',
       logo: {
-        src: './src/assets/phpdb-logo.svg',
+        src: './src/assets/phpdb-logo-horizontal.svg',
         replacesTitle: true,
       },
-      customCss: ['./src/styles/theme.css'],
+      customCss: ['./src/styles/theme.scss'],
+      components: {
+        MarkdownContent: './src/components/MarkdownContent.astro',
+        Footer: './src/components/Footer.astro',
+        Sidebar: './src/components/Sidebar.astro',
+        SiteTitle: './src/components/SiteTitle.astro',
+        PageTitle: './src/components/PageTitle.astro',
+        Pagination: './src/components/Pagination.astro',
+      },
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/php-db' },
       ],
       sidebar: [
-        { label: 'Getting Started', slug: 'getting-started' },
         { label: 'Features', slug: 'features' },
         { label: 'Examples', slug: 'examples' },
-        { label: 'About', slug: 'about' },
-        { label: 'Contributing', slug: 'contributing' },
+        { label: 'Benchmarks', slug: 'benchmarks' },
+        {
+          label: 'About',
+          items: [
+            { label: 'Overview', slug: 'about' },
+            { label: 'Getting Started', slug: 'getting-started' },
+          ],
+        },
         { label: 'Packages', items: generatedSidebar },
       ],
     }),

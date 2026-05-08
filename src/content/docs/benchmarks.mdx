@@ -1,0 +1,161 @@
+---
+title: Benchmarks
+description: Performance comparisons between phpdb, Laminas Db, and Doctrine DBAL across common database operations.
+rawHtml: true
+tableOfContents: false
+pagefind: true
+prev: false
+next: false
+---
+
+<div class="phpdb-page">
+
+<header class="header">
+    <div class="header__container">
+        <div class="header__layout">
+            <h1 class="header__title">Benchmarks</h1>
+        </div>
+    </div>
+</header>
+
+<section class="section">
+    <div class="section__container">
+        <div class="section__layout">
+            <p class="type type--lead">Performance comparisons between phpdb, Laminas Db, and Doctrine DBAL across common database operations.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section section--divider">
+    <div class="section__container">
+        <div class="grid grid--2-col-wide">
+
+            <div>
+                <h2 class="type__subheading type__subheading--sm">Execution Time</h2>
+                <div class="docs__table-wrapper">
+                    <table class="docs__table">
+                        <thead class="docs__thead">
+                            <tr class="docs__tr">
+                                <th class="docs__th">Operation</th>
+                                <th class="docs__th" style="text-align:right">phpdb</th>
+                                <th class="docs__th" style="text-align:right">Laminas Db</th>
+                                <th class="docs__th" style="text-align:right">Doctrine DBAL</th>
+                            </tr>
+                        </thead>
+                        <tbody class="docs__tbody">
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>SELECT Operations</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">SelectByPrimaryKey</td><td class="docs__td" style="text-align:right">336.61µs</td><td class="docs__td" style="text-align:right">342.96µs</td><td class="docs__td docs__td--best" style="text-align:right">300.29µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">SelectWithConditions</td><td class="docs__td" style="text-align:right">870.35µs</td><td class="docs__td" style="text-align:right">876.68µs</td><td class="docs__td docs__td--best" style="text-align:right">849.41µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">SelectWithParams</td><td class="docs__td" style="text-align:right">957.85µs</td><td class="docs__td" style="text-align:right">969.19µs</td><td class="docs__td docs__td--best" style="text-align:right">954.09µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>INSERT Operations</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">InsertSingleRow</td><td class="docs__td" style="text-align:right">1.24ms</td><td class="docs__td" style="text-align:right">1.31ms</td><td class="docs__td docs__td--best" style="text-align:right">1.19ms</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">InsertWithParams</td><td class="docs__td" style="text-align:right">1.14ms</td><td class="docs__td" style="text-align:right">1.30ms</td><td class="docs__td docs__td--best" style="text-align:right">1.12ms</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">InsertBatch</td><td class="docs__td" style="text-align:right">12.55ms</td><td class="docs__td docs__td--best" style="text-align:right">11.56ms</td><td class="docs__td" style="text-align:right">12.38ms</td></tr>
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>UPDATE Operations</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">UpdateByPrimaryKey</td><td class="docs__td" style="text-align:right">333.50µs</td><td class="docs__td" style="text-align:right">335.33µs</td><td class="docs__td docs__td--best" style="text-align:right">250.83µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">UpdateWithConditions</td><td class="docs__td docs__td--best" style="text-align:right">1.08ms</td><td class="docs__td docs__td--best" style="text-align:right">1.08ms</td><td class="docs__td docs__td--best" style="text-align:right">1.08ms</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">UpdateWithParams</td><td class="docs__td" style="text-align:right">344.96µs</td><td class="docs__td" style="text-align:right">339.67µs</td><td class="docs__td docs__td--best" style="text-align:right">253.93µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">UpdateBatch</td><td class="docs__td" style="text-align:right">3.00ms</td><td class="docs__td" style="text-align:right">2.97ms</td><td class="docs__td docs__td--best" style="text-align:right">2.40ms</td></tr>
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>DELETE Operations</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">DeleteByPrimaryKey</td><td class="docs__td" style="text-align:right">280.72µs</td><td class="docs__td" style="text-align:right">278.85µs</td><td class="docs__td docs__td--best" style="text-align:right">225.03µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">DeleteWithConditions</td><td class="docs__td" style="text-align:right">305.79µs</td><td class="docs__td" style="text-align:right">304.80µs</td><td class="docs__td docs__td--best" style="text-align:right">272.80µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">DeleteBatch</td><td class="docs__td" style="text-align:right">407.70µs</td><td class="docs__td" style="text-align:right">408.88µs</td><td class="docs__td docs__td--best" style="text-align:right">317.58µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>JOIN Operations</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">JoinTwoTables</td><td class="docs__td" style="text-align:right">381.32µs</td><td class="docs__td" style="text-align:right">386.02µs</td><td class="docs__td docs__td--best" style="text-align:right">332.89µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">JoinWithAggregate</td><td class="docs__td" style="text-align:right">4.94ms</td><td class="docs__td" style="text-align:right">5.03ms</td><td class="docs__td docs__td--best" style="text-align:right">4.90ms</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">ManyToManyJoin</td><td class="docs__td" style="text-align:right">449.71µs</td><td class="docs__td" style="text-align:right">457.30µs</td><td class="docs__td docs__td--best" style="text-align:right">402.02µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>Advanced Queries</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">AggregateGroupBy</td><td class="docs__td" style="text-align:right">991.15µs</td><td class="docs__td" style="text-align:right">1.01ms</td><td class="docs__td docs__td--best" style="text-align:right">929.35µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">Subquery</td><td class="docs__td" style="text-align:right">454.85µs</td><td class="docs__td" style="text-align:right">1.98ms</td><td class="docs__td docs__td--best" style="text-align:right">366.98µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>Query Building (no execution)</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">BuildSelectSimple</td><td class="docs__td" style="text-align:right">8.01µs</td><td class="docs__td" style="text-align:right">8.87µs</td><td class="docs__td docs__td--best" style="text-align:right">3.11µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">BuildSelectComplex</td><td class="docs__td" style="text-align:right">19.48µs</td><td class="docs__td" style="text-align:right">19.96µs</td><td class="docs__td docs__td--best" style="text-align:right">5.39µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">BuildInsert</td><td class="docs__td" style="text-align:right">2.82µs</td><td class="docs__td" style="text-align:right">2.76µs</td><td class="docs__td docs__td--best" style="text-align:right">1.07µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">BuildUpdate</td><td class="docs__td" style="text-align:right">8.22µs</td><td class="docs__td" style="text-align:right">8.74µs</td><td class="docs__td docs__td--best" style="text-align:right">1.14µs</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">BuildDelete</td><td class="docs__td" style="text-align:right">4.74µs</td><td class="docs__td" style="text-align:right">4.59µs</td><td class="docs__td docs__td--best" style="text-align:right">0.85µs</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="type__subheading type__subheading--sm">Memory Usage</h2>
+                <div class="docs__table-wrapper">
+                    <table class="docs__table">
+                        <thead class="docs__thead">
+                            <tr class="docs__tr">
+                                <th class="docs__th">Operation</th>
+                                <th class="docs__th" style="text-align:right">phpdb</th>
+                                <th class="docs__th" style="text-align:right">Laminas Db</th>
+                                <th class="docs__th" style="text-align:right">Doctrine DBAL</th>
+                            </tr>
+                        </thead>
+                        <tbody class="docs__tbody">
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>SELECT Operations</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">SelectByPrimaryKey</td><td class="docs__td" style="text-align:right">805.74kb</td><td class="docs__td" style="text-align:right">820.38kb</td><td class="docs__td docs__td--best" style="text-align:right">797.35kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">SelectWithConditions</td><td class="docs__td docs__td--best" style="text-align:right">806.37kb</td><td class="docs__td" style="text-align:right">820.99kb</td><td class="docs__td" style="text-align:right">865.51kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">SelectWithParams</td><td class="docs__td docs__td--best" style="text-align:right">806.57kb</td><td class="docs__td" style="text-align:right">821.12kb</td><td class="docs__td" style="text-align:right">865.51kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>INSERT Operations</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">InsertSingleRow</td><td class="docs__td" style="text-align:right">727.05kb</td><td class="docs__td" style="text-align:right">816.80kb</td><td class="docs__td docs__td--best" style="text-align:right">723.81kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">InsertWithParams</td><td class="docs__td" style="text-align:right">727.09kb</td><td class="docs__td" style="text-align:right">816.84kb</td><td class="docs__td docs__td--best" style="text-align:right">723.86kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">InsertBatch</td><td class="docs__td" style="text-align:right">727.45kb</td><td class="docs__td" style="text-align:right">817.20kb</td><td class="docs__td docs__td--best" style="text-align:right">723.81kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>UPDATE Operations</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">UpdateByPrimaryKey</td><td class="docs__td" style="text-align:right">736.81kb</td><td class="docs__td" style="text-align:right">820.33kb</td><td class="docs__td docs__td--best" style="text-align:right">723.86kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">UpdateWithConditions</td><td class="docs__td docs__td--best" style="text-align:right">737.23kb</td><td class="docs__td" style="text-align:right">820.70kb</td><td class="docs__td" style="text-align:right">796.60kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">UpdateBatch</td><td class="docs__td" style="text-align:right">736.80kb</td><td class="docs__td" style="text-align:right">820.32kb</td><td class="docs__td docs__td--best" style="text-align:right">723.81kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>JOIN Operations</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">JoinTwoTables</td><td class="docs__td" style="text-align:right">806.27kb</td><td class="docs__td" style="text-align:right">820.91kb</td><td class="docs__td docs__td--best" style="text-align:right">797.46kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">JoinWithAggregate</td><td class="docs__td docs__td--best" style="text-align:right">731.20kb</td><td class="docs__td" style="text-align:right">821.08kb</td><td class="docs__td" style="text-align:right">794.71kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">ManyToManyJoin</td><td class="docs__td" style="text-align:right">806.64kb</td><td class="docs__td" style="text-align:right">821.28kb</td><td class="docs__td docs__td--best" style="text-align:right">797.46kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td" colspan="4"><strong>Advanced Queries</strong></td></tr>
+                            <tr class="docs__tr"><td class="docs__td">AggregateGroupBy</td><td class="docs__td docs__td--best" style="text-align:right">730.67kb</td><td class="docs__td" style="text-align:right">820.64kb</td><td class="docs__td" style="text-align:right">794.55kb</td></tr>
+                            <tr class="docs__tr"><td class="docs__td">Subquery</td><td class="docs__td" style="text-align:right">806.94kb</td><td class="docs__td" style="text-align:right">822.95kb</td><td class="docs__td docs__td--best" style="text-align:right">794.51kb</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section section--divider">
+    <div class="section__container">
+        <div class="section__layout">
+            <h2 class="type__heading type__heading--sm">Test Environment</h2>
+            <table class="docs__table">
+                <tbody class="docs__tbody">
+                    <tr class="docs__tr"><td class="docs__td">Platform</td><td class="docs__td">GitHub Actions (ubuntu-latest)</td></tr>
+                    <tr class="docs__tr"><td class="docs__td">CPU</td><td class="docs__td">2-core x86_64</td></tr>
+                    <tr class="docs__tr"><td class="docs__td">RAM</td><td class="docs__td">7GB</td></tr>
+                    <tr class="docs__tr"><td class="docs__td">PHP</td><td class="docs__td">8.3 (OPcache enabled)</td></tr>
+                    <tr class="docs__tr"><td class="docs__td">Database</td><td class="docs__td">MySQL 8.0 (Sakila)</td></tr>
+                    <tr class="docs__tr"><td class="docs__td">phpdb</td><td class="docs__td">0.4.x</td></tr>
+                    <tr class="docs__tr"><td class="docs__td">Laminas Db</td><td class="docs__td">2.19</td></tr>
+                    <tr class="docs__tr"><td class="docs__td">Doctrine DBAL</td><td class="docs__td">3.8</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="section section--divider">
+    <div class="section__container">
+        <div class="section__layout">
+            <div class="grid grid--2-col">
+                <div>
+                    <h2 class="type__heading type__heading--sm">Notes</h2>
+                    <p class="type">These benchmarks are intended to provide a general comparison. Real-world performance will vary based on your specific use case, database configuration, and query complexity. All libraries were tested with their default configurations and recommended best practices.</p>
+                    <p class="type">The benchmark source code is available in the <a href="https://github.com/php-db/phpdb-benchmarks" target="_blank" rel="noopener noreferrer">phpdb-benchmarks repository</a>.</p>
+                </div>
+                <div>
+                    <h2 class="type__heading type__heading--sm">Sakila Database</h2>
+                    <p class="type">These benchmarks use the <a href="https://dev.mysql.com/doc/sakila/en/" target="_blank" rel="noopener noreferrer">Sakila sample database</a>, a well-established MySQL reference schema originally developed by Mike Hillyer. Sakila models a DVD rental store with realistic tables including films, actors, customers, rentals, and payments.</p>
+                    <p class="type">Sakila is an ideal benchmarking dataset because it represents real-world relational patterns: one-to-many relationships (films to inventory), many-to-many relationships (films to actors via film_actor), and complex joins across multiple tables. With over 1,000 films, 200 actors, and 16,000 rental records, it provides meaningful data volumes while remaining manageable for repeatable testing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
