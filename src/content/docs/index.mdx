@@ -18,8 +18,7 @@ rawHtml: true
 <section class="section">
     <div class="section__container">
         <div class="section__layout">
-            <p class="type type--lead">A modern PHP Database abstraction layer, SQL abstraction, result set abstraction, and RowDataGateway and TableDataGateway implementations.</p>
-            <p class="type type--lead">Built for PHP 8.2+, Laminas and Mezzio.</p>
+            <p class="type type--lead">A modern PHP Database abstraction layer, SQL abstraction, result set abstraction, and RowDataGateway and TableDataGateway implementations. Built for PHP 8.2+, Laminas and Mezzio.</p>
         </div>
     </div>
 </section>
@@ -27,9 +26,71 @@ rawHtml: true
 <section class="section">
     <div class="section__container">
         <div class="section__layout">
+            <h2 class="type__heading type__heading--xs">Packages</h2>
+            <div class="packages">
+
+                <a class="packages__item" href="packages/phpdb/">
+                    <div class="packages__icon" aria-hidden="true">
+                        <img src={`${import.meta.env.BASE_URL}img/phpdb-icon-driver.svg`} alt="" />
+                    </div>
+                    <div class="packages__content">
+                        <h3 class="packages__title">phpdb <span class="packages__version">v0.6.x</span></h3>
+                        <p class="packages__abstract">Database driver, SQL builders, result sets, and RowGateway / TableGateway. The core package the rest depend on.</p>
+                    </div>
+                </a>
+
+                <a class="packages__item" href="packages/phpdb-mysql/">
+                    <div class="packages__icon" aria-hidden="true">
+                        <img src={`${import.meta.env.BASE_URL}img/phpdb-icon-driver.svg`} alt="" />
+                    </div>
+                    <div class="packages__content">
+                        <h3 class="packages__title">phpdb-mysql <span class="packages__version">v0.4.x</span></h3>
+                        <p class="packages__abstract">MySQL driver and platform support, including identifier quoting and parameter handling for MySQL 5.7+ / 8.x.</p>
+                    </div>
+                </a>
+
+                <a class="packages__item" href="packages/phpdb-pgsql/">
+                    <div class="packages__icon" aria-hidden="true">
+                        <img src={`${import.meta.env.BASE_URL}img/phpdb-icon-driver.svg`} alt="" />
+                    </div>
+                    <div class="packages__content">
+                        <h3 class="packages__title">phpdb-pgsql <span class="packages__version">v0.1.x</span></h3>
+                        <p class="packages__abstract">PostgreSQL driver and platform support, including schema-aware quoting and parameter handling.</p>
+                    </div>
+                </a>
+
+                <a class="packages__item" href="packages/phpdb-sqlite/">
+                    <div class="packages__icon" aria-hidden="true">
+                        <img src={`${import.meta.env.BASE_URL}img/phpdb-icon-driver.svg`} alt="" />
+                    </div>
+                    <div class="packages__content">
+                        <h3 class="packages__title">phpdb-sqlite <span class="packages__version">v0.2.x</span></h3>
+                        <p class="packages__abstract">SQLite driver and platform support — perfect for local development, testing, and embedded use cases.</p>
+                    </div>
+                </a>
+
+                <a class="packages__item" href="packages/phpdb-paginator-adapter/">
+                    <div class="packages__icon" aria-hidden="true">
+                        <img src={`${import.meta.env.BASE_URL}img/phpdb-icon-pager.svg`} alt="" />
+                    </div>
+                    <div class="packages__content">
+                        <h3 class="packages__title">phpdb-paginator-adapter <span class="packages__version">v0.0.x</span></h3>
+                        <p class="packages__abstract">laminas-paginator adapters for phpdb Select queries and TableGateway result sets.</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section__container">
+        <div class="section__layout">
+            <h2 class="type__heading type__heading--xs">Features</h2>
             <div class="grid grid--3-col">
 
-<div class="card">
+<a class="card" href="features/">
     <figure class="card__image">
         <img src={`${import.meta.env.BASE_URL}img/adapter@2x.png`} alt="" />
     </figure>
@@ -43,9 +104,9 @@ rawHtml: true
             <li class="list__item">Smoother deployment across environments</li>
         </ul>
     </div>
-</div>
+</a>
 
-<div class="card">
+<a class="card" href="features/">
     <figure class="card__image">
         <img src={`${import.meta.env.BASE_URL}img/sql@2x.png`} alt="" />
     </figure>
@@ -60,9 +121,9 @@ rawHtml: true
             <li class="list__item">Easier debugging and code review</li>
         </ul>
     </div>
-</div>
+</a>
 
-<div class="card">
+<a class="card" href="features/">
     <figure class="card__image">
         <img src={`${import.meta.env.BASE_URL}img/table-gateway@2x.png`} alt="" />
     </figure>
@@ -76,9 +137,9 @@ rawHtml: true
             <li class="list__item">No unpredictable magic or hidden behaviour</li>
         </ul>
     </div>
-</div>
+</a>
 
-<div class="card">
+<a class="card" href="features/">
     <figure class="card__image">
         <img src={`${import.meta.env.BASE_URL}img/parameter@2x.png`} alt="" />
     </figure>
@@ -92,9 +153,9 @@ rawHtml: true
             <li class="list__item">Improved performance with statement caching</li>
         </ul>
     </div>
-</div>
+</a>
 
-<div class="card">
+<a class="card" href="features/">
     <figure class="card__image">
         <img src={`${import.meta.env.BASE_URL}img/result-set@2x.png`} alt="" />
     </figure>
@@ -108,9 +169,9 @@ rawHtml: true
             <li class="list__item">No need to adapt to framework conventions</li>
         </ul>
     </div>
-</div>
+</a>
 
-<div class="card">
+<a class="card" href="features/">
     <figure class="card__image">
         <img src={`${import.meta.env.BASE_URL}img/profiling@2x.png`} alt="" />
     </figure>
@@ -124,7 +185,7 @@ rawHtml: true
             <li class="list__item">No heavy profiling tools required</li>
         </ul>
     </div>
-</div>
+</a>
 
             </div>
         </div>
@@ -189,8 +250,10 @@ rawHtml: true
                     <div class="grid grid--3-col">
                         <div class="grid__col">
                             <ul class="list list--links">
-                                <li class="list__item"><a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a><br/>Site framework</li>
-                                <li class="list__item"><a href="https://starlight.astro.build" target="_blank" rel="noopener noreferrer">Starlight</a><br/>Documentation theme</li>
+                            webware/traccio
+                                <li class="list__item"><a href="https://github.com/tyrsson/traccio" target="_blank" rel="noopener noreferrer">Traccio</a><br/>Tracy Debugger integration and profiler for Mezzio applications</li>
+                                <li class="list__item"><a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a><br/>Documentation framework</li>
+                                <li class="list__item"><a href="https://starlight.astro.build" target="_blank" rel="noopener noreferrer">Starlight</a><br/>Custom theme built on top of Starlight documentation theme</li>
                             </ul>
                         </div>
                         <div class="grid__col">

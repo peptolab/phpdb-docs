@@ -21,6 +21,7 @@
         @extend %container;
 
         font-size : s.$font-size-sm;
+        margin    : 1em 0;
         color     : s.$text-muted;
 
         @include t.dark {

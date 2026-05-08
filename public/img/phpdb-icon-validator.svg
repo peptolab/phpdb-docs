@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-57.95" y1="430.27" x2="697.47" y2="10.94" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2484c6"/>
+      <stop offset="1" stop-color="#2484c6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="219.1" y1="516.93" x2="39.79" y2="137.29" gradientTransform="translate(512 512) rotate(-180)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="301.02" y1="478.24" x2="121.71" y2="98.6" gradientTransform="translate(512 512) rotate(-180)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="481.21" y1="393.13" x2="301.9" y2="13.49" gradientTransform="translate(512 512) rotate(-180)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-5" x1="399.04" y1="431.94" x2="219.73" y2="52.3" gradientTransform="translate(512 512) rotate(-180)" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-6" x1="150.52" y1="310.75" x2="361.48" y2="310.75" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="blue"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="149.19" y1="183.77" x2="477.5" y2="421.23" xlink:href="#linear-gradient-6"/>
+    <linearGradient id="linear-gradient-8" y1="186.39" y2="186.39" xlink:href="#linear-gradient-6"/>
+    <linearGradient id="linear-gradient-9" x1="208.24" y1="102.13" x2="536.55" y2="339.58" xlink:href="#linear-gradient-6"/>
+  </defs>
+  <rect x="0" width="512" height="512" transform="translate(512 512) rotate(-180)" fill="url(#linear-gradient)" opacity=".25"/>
+  <g opacity=".25">
+    <path d="M402.85,247.7h72.04c-1.84-38.79-12.17-73.76-30.93-104.85-18.8-31.09-43.86-56.2-75.27-75.31-31.41-19.08-66.21-29.26-104.41-30.49v72.04c24.63,1.24,47.3,8.18,67.89,20.79l.04.04c20.63,12.65,37.12,29.1,49.41,49.41,12.33,20.32,19.4,43.1,21.23,68.37" fill="url(#linear-gradient-2)"/>
+    <path d="M264.32,474.95c38.2-1.84,73-12.17,104.41-30.93,31.41-18.8,56.51-43.86,75.27-75.27,18.8-31.41,29.1-66.21,30.93-104.41h-72.04c-1.84,24.63-8.94,47.3-21.23,67.89-12.33,20.63-28.78,37.12-49.41,49.41l-.04.04c-20.63,12.33-43.26,19.4-67.89,21.23v72.04" fill="url(#linear-gradient-3)"/>
+    <path d="M247.72,474.91v-72.04c-25.26-1.24-48.05-8.18-68.37-20.79-20.31-12.61-36.8-29.1-49.41-49.41h-.04c-12.61-20.32-19.56-43.1-20.79-68.37H37.07c1.24,38.79,11.41,73.76,30.49,104.85,19.12,31.09,44.22,56.2,75.31,75.27,31.09,19.08,66.05,29.25,104.85,30.49" fill="url(#linear-gradient-4)"/>
+    <path d="M37.07,247.68h72.04c1.24-25.26,8.18-48.05,20.79-68.37h.04c12.61-20.31,29.1-36.8,49.41-49.41,20.32-12.61,43.1-19.56,68.37-20.79V37.07c-38.79,1.24-73.76,11.41-104.85,30.49-31.09,19.08-56.2,44.18-75.31,75.27-19.08,31.09-29.25,66.05-30.49,104.85" fill="url(#linear-gradient-5)"/>
+  </g>
+  <g>
+    <path d="M361.48,261.03c0-25.5-47.23-46.17-105.48-46.17s-105.48,20.67-105.48,46.17c0,1.13.13,2.26.31,3.37-.1-.1-.21-.19-.31-.29v96.36c0,25.5,47.23,46.17,105.48,46.17s105.48-20.67,105.48-46.17v-96.36c-.1.1-.21.19-.31.29.18-1.11.31-2.23.31-3.37Z" fill="url(#linear-gradient-6)"/>
+    <path d="M256,214.86c58.26,0,105.48,20.67,105.48,46.17s-47.23,46.17-105.48,46.17-105.48-20.67-105.48-46.17,47.23-46.17,105.48-46.17" fill="url(#linear-gradient-7)"/>
+  </g>
+  <g>
+    <path d="M361.48,136.67c0-25.5-47.23-46.17-105.48-46.17s-105.48,20.67-105.48,46.17c0,1.13.13,2.26.31,3.37-.1-.1-.21-.19-.31-.29v96.36c0,25.5,47.23,46.17,105.48,46.17s105.48-20.67,105.48-46.17v-96.36c-.1.1-.21.19-.31.29.18-1.11.31-2.23.31-3.37Z" fill="url(#linear-gradient-8)"/>
+    <path d="M256,90.5c58.26,0,105.48,20.67,105.48,46.17s-47.23,46.17-105.48,46.17-105.48-20.67-105.48-46.17,47.23-46.17,105.48-46.17" fill="url(#linear-gradient-9)"/>
+  </g>
+  <circle cx="256" cy="283.27" r="57.68" fill="blue"/>
+  <polyline points="226.27 293.32 243.89 307.75 282.66 260.41" fill="none" stroke="#f0f0f0" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"/>
+</svg>

@@ -2,13 +2,23 @@
 @use "../tools" as t;
 
 .card {
+    display          : block;
     overflow         : hidden;
     padding          : s.$space-4;
     border-radius    : 1rem;
+    text-decoration  : none;
+    color            : inherit;
     background-color : s.$surface;
+    transition       : transform s.$transition-fast, box-shadow s.$transition-fast;
 
     @media (prefers-color-scheme : dark) {
         background-color : s.$dark-surface;
+    }
+
+    /* When the whole card is itself a link, give it a subtle hover lift. */
+    &:is(a):hover {
+        transform  : translateY(-2px);
+        box-shadow : 0 4px 12px -2px rgb(0 0 0 / 0.1);
     }
 
     @include t.element("header") {
@@ -16,6 +26,7 @@
     }
 
     @include t.element("body") {
+        line-height: 1.5;
         padding : 0;
     }
 
